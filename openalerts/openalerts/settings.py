@@ -123,8 +123,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 SOCIAL_AUTH_AUTHENTICATION_BACKENDS = (
-    'social_core.backends.open_id.OpenIdAuth',
+    'management.backends.PressPassBackend',
 )
+
+AUTHENTICATION_BACKENDS = SOCIAL_AUTH_AUTHENTICATION_BACKENDS
 
 SOCIAL_AUTH_URL_NAMESPACE = 'auth'
 
