@@ -127,3 +127,7 @@ SOCIAL_AUTH_AUTHENTICATION_BACKENDS = (
 )
 
 SOCIAL_AUTH_URL_NAMESPACE = 'auth'
+
+LOGIN_URL = "/management/login/"
+
+PRESSPASS_URL = "http://dev.squarelet.com"
