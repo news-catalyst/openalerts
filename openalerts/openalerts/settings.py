@@ -124,11 +124,22 @@ STATIC_URL = '/static/'
 
 SOCIAL_AUTH_AUTHENTICATION_BACKENDS = (
     'management.backends.PressPassBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.auth_allowed',
+    'management.pipeline.initialize_session'
 )
 
 AUTHENTICATION_BACKENDS = SOCIAL_AUTH_AUTHENTICATION_BACKENDS
 
 SOCIAL_AUTH_URL_NAMESPACE = 'auth'
+
+SOCIAL_AUTH_PRESSPASS_KEY = "147292"
+SOCIAL_AUTH_PRESSPASS_SECRET = "16d4fd82b708834e2f051ec8680275e725d8af263ce17ac9528c81ad"
 
 LOGIN_URL = "/management/login/"
 

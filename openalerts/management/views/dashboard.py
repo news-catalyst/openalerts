@@ -1,6 +1,11 @@
 from django.views.generic import TemplateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from management.mixins import SessionAuthenticationRequiredMixin
 
 
-class DashboardView(LoginRequiredMixin, TemplateView):
+class DashboardView(SessionAuthenticationRequiredMixin, TemplateView):
     template_name = "management/pages/dashboard.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["organizations"] = self.request.session["organizations"]
+        return context
