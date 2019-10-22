@@ -15,6 +15,6 @@ class Organization(models.Model):
     @staticmethod
     def for_session(session):
         orgs = []
-        for org in session["organizations"]:
+        for org in session.get("presspass_organizations", []):
             orgs.append(Organization.for_presspass_org(org))
         return orgs

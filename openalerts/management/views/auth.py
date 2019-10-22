@@ -5,7 +5,7 @@ class LoginView(TemplateView):
     template_name = "management/pages/login.html"
 
     def dispatch(self, request, *args, **kwargs):
-        if self.request.session.get("authenticated", False) == True:
+        if self.request.session.get("presspass_authenticated", False) == True:
             return redirect("management:dashboard")
         return super().dispatch(request, *args, **kwargs)
 

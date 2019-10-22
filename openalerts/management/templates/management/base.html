@@ -20,7 +20,7 @@
             <a href="{% url 'management:dashboard' %}" class="uk-navbar-item uk-logo uk-text-light">Open Alerts</a>
             <div class="uk-navbar-right">
                 <ul class="uk-navbar-nav">
-                    {% if request.session.authenticated %}
+                    {% if request.session.presspass_authenticated %}
                     <li>
                         <a href="{% url 'management:dashboard' %}">Manage</a>
                         <div class="uk-navbar-dropdown">
