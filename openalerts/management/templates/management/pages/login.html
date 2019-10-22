@@ -1,1 +1,10 @@
-<a href="{% url "auth:begin" "presspass" %}">Log In</a>
+{% extends 'management/base.html' %}
+
+{% block content %}
+<div class="uk-card uk-card-large uk-card-primary uk-card-body">
+    <h3 class="uk-card-title">Please Log In</h3>
+    <p>To view the OpenAlerts management dashboard for your organization, you must first log in with PressPass.</p>
+    <p>If you aren't a member of an organization or think you're here by mistake, <a href="/">click here</a>.</p>
+    <a class="uk-button uk-button-default" href="{% url 'auth:begin' 'presspass' %}">Log In With PressPass</a>
+</div>
+{% endblock %}
