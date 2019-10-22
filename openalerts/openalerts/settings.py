@@ -123,7 +123,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 SOCIAL_AUTH_AUTHENTICATION_BACKENDS = (
-    'management.backends.PressPassBackend',
+    'social_auth_presspass.backends.PressPassBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -131,8 +131,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_details',
     'social_core.pipeline.social_auth.social_uid',
     'social_core.pipeline.social_auth.auth_allowed',
-    'management.pipeline.extract_organizations',
-    'management.pipeline.link_organizations_to_session',
+    'social_auth_presspass.pipelines.link_organizations_to_session',
 )
 
 AUTHENTICATION_BACKENDS = SOCIAL_AUTH_AUTHENTICATION_BACKENDS

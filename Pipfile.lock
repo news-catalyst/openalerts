@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "bc7768483858df68388d91c5cc59536e2e711c8e2b115db96208340669c906d7"
+            "sha256": "3851939ecbc05b3fd6cf74c51fc790a0789e6801b4dd4334173a0966bde084ee"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -157,6 +157,14 @@
             ],
             "index": "pypi",
             "version": "==3.2.0"
+        },
+        "social-auth-presspass": {
+            "hashes": [
+                "sha256:128c1c85da9b15ce3b533510e0ef979d9a606d75a43388ded6b1480e5de79b57",
+                "sha256:e1eee318ebd8f062e77bd5e3a62e0b00f38ad124906e6468dec9b2af7140db05"
+            ],
+            "index": "pypi",
+            "version": "==0.2.0"
         },
         "sqlparse": {
             "hashes": [
