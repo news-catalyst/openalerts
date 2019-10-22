@@ -1,0 +1,12 @@
+{% extends 'management/base.html' %}
+
+{% block content %}
+<h1 class="uk-heading-divider">{{organization.name}}</h1>
+<form class="uk-form" method="POST">
+    <div uk-form-custom>
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="uk-button uk-button-default">Update</button>
+    </div>
+</form>
+{% endblock %}

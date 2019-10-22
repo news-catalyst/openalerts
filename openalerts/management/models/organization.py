@@ -1,9 +1,9 @@
 from django.db import models
-
+from django.shortcuts import reverse
 
 class Organization(models.Model):
     name = models.CharField(max_length=128)
-    presspass_uuid = models.UUIDField()
+    presspass_uuid = models.UUIDField(editable=False)
     website = models.URLField(blank=True, default='')
 
     @staticmethod
@@ -18,3 +18,7 @@ class Organization(models.Model):
         for org in session.get("presspass_organizations", []):
             orgs.append(Organization.for_presspass_org(org))
         return orgs
+
+    def get_absolute_url(self):
+        return reverse("management:organization", kwargs={"pk": self.pk})
+    
