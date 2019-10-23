@@ -1,4 +1,4 @@
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from management.mixins import SessionAuthenticationRequiredMixin, SessionOrgContextMixin, OrgContextMixin
 from django.urls import reverse
 from management.models import Organization
@@ -19,6 +19,21 @@ class CreateAlertView(SessionAuthenticationRequiredMixin, SessionOrgContextMixin
         if self.request.GET.get("channel", None) != None:
             initial["channel"] = int(self.request.GET.get("channel"))
         return initial
+
+    def get_success_url(self):
+        return reverse("management:channel", kwargs={"org_id": self.object.channel.organization.pk, "pk": self.object.channel.pk})
+
+class EditAlertView(SessionAuthenticationRequiredMixin, SessionOrgContextMixin, OrgContextMixin, UpdateView):
+    template_name = "management/pages/edit_alert.html"
+    model = Alert
+    fields = ["channel", "content", "url", "image_url"]
+
+    def get_success_url(self):
+        return reverse("management:channel", kwargs={"org_id": self.object.channel.organization.pk, "pk": self.object.channel.pk})
+
+class DeleteAlertView(SessionAuthenticationRequiredMixin, SessionOrgContextMixin, OrgContextMixin, DeleteView):
+    template_name = "management/pages/delete_alert.html"
+    model = Alert
 
     def get_success_url(self):
         return reverse("management:channel", kwargs={"org_id": self.object.channel.organization.pk, "pk": self.object.channel.pk})

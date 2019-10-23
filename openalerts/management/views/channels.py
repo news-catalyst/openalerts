@@ -1,5 +1,5 @@
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.base import ContextMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -26,7 +26,7 @@ class CreateChannelView(
         return super(CreateChannelView, self).form_valid(form)
 
     def get_success_url(self, **kwargs):
-        return reverse_lazy("management:channel_list", args={"org_id": self.kwargs["org_id"]})
+        return reverse_lazy("management:channel", kwargs={"org_id": self.kwargs["org_id"], "pk": self.object.id})
 
 class EditChannelView(
     SessionAuthenticationRequiredMixin, SessionOrgContextMixin, OrgContextMixin, UpdateView
@@ -36,7 +36,16 @@ class EditChannelView(
     fields = ["name", "description"]
 
     def get_success_url(self, **kwargs):
-        return reverse_lazy("management:channel_list", args={"org_id": self.kwargs["org_id"]})
+        return reverse_lazy("management:channel", kwargs={"org_id": self.kwargs["org_id"], "pk": self.object.id})
+
+class DeleteChannelView(
+    SessionAuthenticationRequiredMixin, SessionOrgContextMixin, OrgContextMixin, DeleteView
+):
+    template_name = "management/pages/delete_channel.html"
+    model = Channel
+
+    def get_success_url(self, **kwargs):
+        return reverse_lazy("management:channel_list", kwargs={"org_id": self.kwargs["org_id"]})
 
 class ChannelView(
     SessionAuthenticationRequiredMixin, SessionOrgContextMixin, OrgContextMixin, DetailView

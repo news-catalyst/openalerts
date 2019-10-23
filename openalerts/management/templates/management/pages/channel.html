@@ -13,6 +13,7 @@
 <div class="columns is-multiline">
     {% for alert in object.alert_set.all %}
     <div class="column is-4">
+        <a href="{% url "management:edit_alert" org_id=organization.id pk=alert.id %}" class="has-text-grey">&#9998; Edit</a>
         {% include 'alerts/includes/alert.html' %}
     </div>
     {% empty %}

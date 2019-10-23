@@ -14,6 +14,10 @@
 <form method="POST">
     {{form.as_p}}
     {% csrf_token %}
+    <br>
     <button type="submit" class="button is-link">Save</button>
+    {% if object %}
+    <a href="{% url 'management:delete_alert' org_id=organization.id pk=object.id %}" class="button is-danger is-outlined">Delete</a>
+    {% endif %}
 </form>
 {% endblock %}
