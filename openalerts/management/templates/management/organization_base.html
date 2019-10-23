@@ -4,26 +4,41 @@
 <section class="hero is-light">
     <div class="hero-body">
         <div class="container">
-            <p class="heading">Managing</p>
-            <h1 class="title is-capitalized is-size-3">
-                {{organization.name}}
-                <span class="has-text-weight-light">
-                    {% block subsection %}
-                    {% endblock %}
-                </span>
-            </h1>
+            <div class="level">
+                <div class="level-left">
+                    <div class="level-item is-block">
+                        <p class="heading">Managing</p>
+                        <h1 class="title is-capitalized is-size-3">
+                            {{organization.name}}
+                            <span class="has-text-weight-light">
+                                {% block subsection %}
+                                {% endblock %}
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+                <div class="level-right">
+                    <div class="level-item is-block">
+                        {% block action %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="hero-foot">
         <div class="container">
             <div class="tabs">
                 <ul>
-                    <li {% if tab_scope == "overview" %}class="is-active"{% endif %}><a href={% url 'management:organization' pk=organization.id %}>Overview</a></li>
-                    <li {% if tab_scope == "channels" %}class="is-active"{% endif %}><a href="{% url 'management:channel_list' organization.id %}">Channels</a></li>
-                    <li {% if tab_scope == "publish" %}class="is-active"{% endif %}><a>Publish Alert</a></li>
+                    <li {% if tab_scope == "overview" %}class="is-active" {% endif %}><a
+                            href={% url 'management:organization' pk=organization.id %}>Overview</a></li>
+                    <li {% if tab_scope == "channels" %}class="is-active" {% endif %}><a
+                            href="{% url 'management:channel_list' org_id=organization.id %}">Channels</a></li>
+                    <li {% if tab_scope == "publish" %}class="is-active" {% endif %}><a
+                        href="{% url 'management:create_alert' org_id=organization.id %}">Publish Alert</a></li>
                 </ul>
             </div>
         </div>
     </div>
 </section>
-{% endblock%}
+{% endblock %}

@@ -4,6 +4,11 @@
 / {{object.name}}
 {% endblock %}
 
+{% block action %}
+<a href="{% url "management:edit_channel" org_id=organization.id pk=object.id %}" class="button is-link is-outlined">&#9998; Edit Channel</a>
+<a href="{% url "management:create_alert" org_id=organization.id%}?channel={{object.id}}" class="button is-link is-outlined">+ Publish Alert</a>
+{% endblock %}
+
 {% block content %}
 <div class="columns is-multiline">
     {% for alert in object.alert_set.all %}
@@ -11,8 +16,7 @@
         {% include 'alerts/includes/alert.html' %}
     </div>
     {% empty %}
-    <div class="notification">No alerts have been created.
-    </div>
+    <div class="notification">No alerts have been created. <a href="{% url 'management:create_alert' org_id=organization.id %}?channel={{object.id}}</div>
     {% endfor %}
 </div>
 {% endblock %}

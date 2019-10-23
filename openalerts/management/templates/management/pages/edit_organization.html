@@ -1,0 +1,10 @@
+{% extends 'management/organization_base.html' %}
+
+{% block content %}
+<h5 class="is-size-5">Edit Organization</h5>
+<form class="form" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" class="button is-small is-outlined is-link">Update</button>
+</form>
+{% endblock %}

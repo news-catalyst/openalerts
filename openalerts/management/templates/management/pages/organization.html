@@ -1,11 +1,12 @@
 {% extends 'management/organization_base.html' %}
 
+{% block action %}
+<a href="{% url "management:create_alert" org_id=organization.id %}" class="button is-link is-outlined">+ Publish Alert</a>
+{% endblock %}
+
 {% block content %}
-stuff will eventually go here
+Information about alerts, channels, and subscribers will eventually go here.
+
 <hr>
-<form class="form" method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit" class="button is-small is-outlined is-link">Update</button>
-</form>
+<a href="{% url 'management:edit_organization' pk=organization.id %}">Edit Organization</a>
 {% endblock %}

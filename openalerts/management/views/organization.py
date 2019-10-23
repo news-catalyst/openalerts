@@ -1,15 +1,18 @@
 from django.views.generic.edit import UpdateView
+from django.views.generic.detail import DetailView
 from management.mixins import SessionAuthenticationRequiredMixin, SessionOrgContextMixin
 from management.models import Organization
 
 
-class OrganizationView(
+class EditOrganizationView(
     SessionAuthenticationRequiredMixin, SessionOrgContextMixin, UpdateView
 ):
-    template_name = "management/pages/organization.html"
+    template_name = "management/pages/edit_organization.html"
     model = Organization
     fields = ["name", "website"]
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
+class OrganizationView(
+    SessionAuthenticationRequiredMixin, SessionOrgContextMixin, DetailView
+):
+    template_name = "management/pages/organization.html"
+    model = Organization

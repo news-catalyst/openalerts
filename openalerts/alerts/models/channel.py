@@ -16,3 +16,5 @@ class Channel(models.Model):
         self.slug = slugify(value, allow_unicode=False)
         super().save(*args, **kwargs)
 
+    def __str__(self):
+        return self.name

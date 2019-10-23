@@ -16,3 +16,9 @@ class SessionOrgContextMixin(ContextMixin):
         context = super(SessionOrgContextMixin, self).get_context_data(**kwargs)
         context.update(dict(organizations=Organization.for_session(self.request.session)))
         return context
+
+class OrgContextMixin(ContextMixin):
+    def get_context_data(self, **kwargs):
+        context = super(OrgContextMixin, self).get_context_data(**kwargs)
+        context.update(dict(organization=Organization.objects.get(id=self.kwargs["org_id"])))
+        return context
