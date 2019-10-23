@@ -7,7 +7,7 @@
             <p class="heading">Managing</p>
             <h1 class="title is-capitalized is-size-3">
                 {{organization.name}}
-                <span class="has-text-weight-normal">
+                <span class="has-text-weight-light">
                     {% block subsection %}
                     {% endblock %}
                 </span>
@@ -18,9 +18,9 @@
         <div class="container">
             <div class="tabs">
                 <ul>
-                    <li class="is-active"><a>Overview</a></li>
-                    <li><a href="{% url 'management:channel_list' organization.id %}">Channels</a></li>
-                    <li><a>Publish Alert</a></li>
+                    <li {% if tab_scope == "overview" %}class="is-active"{% endif %}><a href={% url 'management:organization' pk=organization.id %}>Overview</a></li>
+                    <li {% if tab_scope == "channels" %}class="is-active"{% endif %}><a href="{% url 'management:channel_list' organization.id %}">Channels</a></li>
+                    <li {% if tab_scope == "publish" %}class="is-active"{% endif %}><a>Publish Alert</a></li>
                 </ul>
             </div>
         </div>

@@ -13,10 +13,10 @@ app_name = "management"
 
 urlpatterns = [
     path("", DashboardView.as_view(), name="dashboard"),
-    path("organization/<int:pk>/", OrganizationView.as_view(), name="organization"),
-    path("organization/<int:org_id>/channels/", ChannelListView.as_view(), name="channel_list"),
-    path("organization/<int:org_id>/channels/create/", CreateChannelView.as_view(), name="create_channel"),
-    path("organization/<int:org_id>/channels/<int:pk>/", ChannelView.as_view(), name="channel"),
+    path("organization/<int:pk>/", OrganizationView.as_view(extra_context={"tab_scope": "overview"}), name="organization"),
+    path("organization/<int:org_id>/channels/", ChannelListView.as_view(extra_context={"tab_scope": "channels"}), name="channel_list"),
+    path("organization/<int:org_id>/channels/create/", CreateChannelView.as_view(extra_context={"tab_scope": "channels"}), name="create_channel"),
+    path("organization/<int:org_id>/channels/<int:pk>/", ChannelView.as_view(extra_context={"tab_scope": "channels"}), name="channel"),
     path("login/", LoginView.as_view(), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
 ]
