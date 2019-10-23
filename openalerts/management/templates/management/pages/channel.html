@@ -1,0 +1,18 @@
+{% extends 'management/organization_base.html' %}
+
+{% block subsection %}
+&bull; {{object.name}}
+{% endblock %}
+
+{% block content %}
+<div class="columns is-multiline">
+    {% for alert in object.alert_set.all %}
+    <div class="column is-4">
+        {% include 'alerts/includes/alert.html' %}
+    </div>
+    {% empty %}
+    <div class="notification">No alerts have been created.
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

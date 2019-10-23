@@ -1,5 +1,9 @@
 {% extends 'management/organization_base.html' %}
 
+{% block subsection %}
+&bull; Channels
+{% endblock %}
+
 {% block content %}
 <div class="columns is-multiline">
     {% for channel in organization.channel_set.all %}

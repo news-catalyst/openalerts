@@ -7,6 +7,10 @@
             <p class="heading">Managing</p>
             <h1 class="title is-capitalized is-size-3">
                 {{organization.name}}
+                <span class="has-text-weight-normal">
+                    {% block subsection %}
+                    {% endblock %}
+                </span>
             </h1>
         </div>
     </div>
