@@ -5,6 +5,7 @@
     <h3 class="title is-size-3">Please Log In</h3>
     <p>To view the OpenAlerts management dashboard for your organization, you must first log in with PressPass.</p>
     <p>If you aren't a member of an organization or think you're here by mistake, <a href="/">click here</a>.</p>
-    <a class="button is-primary" href="{% url 'auth:begin' 'presspass' %}">Log In With PressPass</a>
+    <br>
+    <a class="button is-link" href="{% url 'auth:begin' 'presspass' %}">Log In With PressPass</a>
 </div>
 {% endblock %}

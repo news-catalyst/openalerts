@@ -1,0 +1,15 @@
+{% extends 'management/organization_base.html' %}
+
+{% block content %}
+{% if object %}
+    <h1 class="is-size-4">Edit Channel</h1>
+{% else %}
+    <h1 class="is-size-4">Create Channel</h1>
+{% endif %}
+
+<form method="POST">
+    {{form.as_p}}
+    {% csrf_token %}
+    <button type="submit" class="button is-primary">Save</button>
+</form>
+{% endblock %}

@@ -43,7 +43,7 @@
                     <a href="{% url 'management:logout' %}" class="navbar-item">Log Out</a>
                     {% else %}
                     <div class="navbar-item">
-                        <a href="{% url 'management:login' %}" class="button is-primary is-outlined">Log In</a>
+                        <a href="{% url 'management:login' %}" class="button is-light is-outlined">Log In</a>
                     </div>
                     {% endif %}
                 </div>
@@ -52,11 +52,12 @@
     </nav>
     {% block precontent %}
     {% endblock %}
-    <br>
-    <div class="container">
-        {% block content %}
-        {% endblock %}
-    </div>
+    <section class="section">
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </section>
 </body>
 
 </html>

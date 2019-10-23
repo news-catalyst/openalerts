@@ -1,5 +1,5 @@
-<a class="box" href="{% if url %}url{% else %}#{% endif %}">
+<a class="box" href="{% if url %}{{url}}{% else %}#{% endif %}">
     <p class="heading">{{channel.organization.name}}</p>
-    <h3 class="title is-size-3">{{channel.name}}</p>
+    <h5 class="title is-size-5">{{channel.name}}</h5>
     <p>{{channel.description}}</p>
 </a>
