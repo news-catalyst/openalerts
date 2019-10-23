@@ -1,0 +1,25 @@
+{% extends 'management/base.html' %}
+
+{% block precontent %}
+<section class="hero is-light">
+    <div class="hero-body">
+        <div class="container">
+            <p class="heading">Managing</p>
+            <h1 class="title is-capitalized is-size-3">
+                {{organization.name}}
+            </h1>
+        </div>
+    </div>
+    <div class="hero-foot">
+        <div class="container">
+            <div class="tabs">
+                <ul>
+                    <li class="is-active"><a>Overview</a></li>
+                    <li><a href="{% url 'management:channels' organization.id %}">Channels</a></li>
+                    <li><a>Publish Alert</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock%}

@@ -1,7 +1,26 @@
 {% extends 'management/base.html' %}
 
+{% block precontent %}
+<section class="hero is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Dashboard
+      </h1>
+      <h2 class="subtitle">
+        To get started, please select your organization.
+      </h2>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
 {% block content %}
-<h1>Dashboard Page!</h1>
-<p>Welcome to the authenticated management page.</p>
-{{organizations}}
+<div class="columns is-multiline">
+<div class="column is-4">
+{% for organization in organizations %}
+    {% include 'management/includes/organization.html' %}
+{% endfor %}
+</div>
+</div>
 {% endblock %}

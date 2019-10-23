@@ -1,0 +1,12 @@
+{% extends 'management/organization_base.html' %}
+
+{% block content %}
+<div class="columns is-multiline">
+    {% for channel in organization.channel_set.all %}
+    <div class="column is-4">
+        {% url 'management:channel' organization.id channel.id as url %}
+        {% include 'alerts/includes/channel.html '%}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
