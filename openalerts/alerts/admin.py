@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Channel, Alert
 
-# Register your models here.
+admin.site.register(Channel)
+admin.site.register(Alert)
