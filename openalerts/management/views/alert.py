@@ -21,4 +21,4 @@ class CreateAlertView(SessionAuthenticationRequiredMixin, SessionOrgContextMixin
         return initial
 
     def get_success_url(self):
-        return reverse("management:channel", args={"org_id": self.object.organization.id, "pk": self.object.pk})
+        return reverse("management:channel", kwargs={"org_id": self.object.channel.organization.pk, "pk": self.object.channel.pk})

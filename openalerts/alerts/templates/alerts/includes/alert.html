@@ -1,4 +1,6 @@
+{% load humanize %}
+
 <a class="box" {% if alert.url %}href="{{alert.url}}"{% endif %}>
-    <p class="heading">{{alert.channel.organization.name}} / {{alert.channel.name}}</p>
+    <p class="heading">{{alert.channel.name}} / {{alert.updated|naturaltime}}</p>
     <p>{{alert.content}}</p>
 </a>
