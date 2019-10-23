@@ -1,23 +1,30 @@
 {% extends 'management/organization_base.html' %}
 
+{% load bulma_tags %}
+
 {% block subsection %}
 / Channels / Edit
 {% endblock %}
 
 {% block content %}
 {% if object %}
-    <h1 class="is-size-4">Edit Channel</h1>
+<h1 class="is-size-4">Edit Channel</h1>
 {% else %}
-    <h1 class="is-size-4">Create Channel</h1>
+<h1 class="is-size-4">Create Channel</h1>
 {% endif %}
-
-<form method="POST">
-    {{form.as_p}}
-    {% csrf_token %}
-    <br>
-    <button type="submit" class="button is-link">Save</button>
-    {% if object %}
-    <a href="{% url 'management:delete_channel' org_id=organization.id pk=object.id %}" class="button is-danger is-outlined">Delete</a>
-    {% endif %}
-</form>
+<br>
+<div class="columns">
+    <div class="column is-4">
+        <form method="POST">
+            {{form|bulma}}
+            {% csrf_token %}
+            <br>
+            <button type="submit" class="button is-link">Save</button>
+            {% if object %}
+            <a href="{% url 'management:delete_channel' org_id=organization.id pk=object.id %}"
+                class="button is-danger is-outlined">Delete</a>
+            {% endif %}
+        </form>
+    </div>
+</div>
 {% endblock %}

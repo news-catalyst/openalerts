@@ -12,6 +12,7 @@ django = "==2.2"
 social-auth-app-django = "*"
 social-auth-core = {extras = ["openidconnect"],version = "*"}
 social-auth-presspass = "*"
+django-bulma = "*"
 
 [requires]
 python_version = "3.6"
