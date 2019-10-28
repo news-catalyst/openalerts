@@ -1,6 +1,8 @@
 from django.db import models
 from management.models import Organization
 from alerts.models import Channel
+from django.core.signing import TimestampSigner
+from django.shortcuts import get_object_or_404
 
 # Emails
 from django.core.mail import send_mass_mail
@@ -46,6 +48,15 @@ class EmailSubscription(models.Model):
     verified = models.BooleanField(default=False)
 
     unique_together = ["email", "organization"]
+
+    def get_verification_token(self):
+        return TimestampSigner().sign(str(self.id))
+
+    @staticmethod
+    def activate_verification_token(self, token):
+        subscription = get_object_or_404(EmailSubscription, id=TimestampSigner().unsign(token, max_age=24*60*60))
+        subscription.verified = True
+        subscription.save()
 
 
 class EmailSubscriptionGroup:
