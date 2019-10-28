@@ -1,5 +1,9 @@
-<div class="box">
-    <h3 class="title is-size-3">{{organization.name}}</h3>
-    <a class="button is-outlined is-link" href="{% url 'management:organization' organization.id %}">Manage
-        Organization</a>
-</div>
+{% load humanize %}
+
+<a class="box" href="{% url 'management:organization' organization.id %}">
+    <h3 class="is-size-5 title">{{organization.name}}</h3>
+    <div class="tags">
+        <span class="tag">Channels: {{organization.channel_count}}</span>
+        <span class="tag">Subscribers: {{organization.subscriber_count}}</span>
+    </div>
+</a>

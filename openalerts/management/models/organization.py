@@ -22,4 +22,12 @@ class Organization(models.Model):
 
     def get_absolute_url(self):
         return reverse("management:organization", kwargs={"pk": self.pk})
+
+    def channel_count(self):
+        return self.channel_set.all().count()
+
+    def subscriber_count(self):
+        return sum(
+            [self.emailsubscription_set.all().count()]
+        )
     
