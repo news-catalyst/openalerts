@@ -148,3 +148,5 @@ SOCIAL_AUTH_PRESSPASS_KEY = os.getenv('PRESSPASS_CLIENT_ID')
 LOGIN_URL = "/management/login/"
 
 PRESSPASS_URL = "http://dev.squarelet.com"
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

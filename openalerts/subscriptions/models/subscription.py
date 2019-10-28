@@ -59,11 +59,11 @@ class EmailSubscription(models.Model):
         subscription.save()
 
 
-class EmailSubscriptionGroup:
+class EmailSubscriptionGroup(SubscriptionGroup):
     @staticmethod
     def for_channel(channel):
         return EmailSubscriptionGroup(
-            EmailSubscription.objects.filter(channels__contains=channel, verified=True)
+            EmailSubscription.objects.filter(channels__in=[channel], verified=True)
         )
 
     def push(self, alert):
