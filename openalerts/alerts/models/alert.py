@@ -6,5 +6,5 @@ class Alert(models.Model):
     content = models.TextField()
     image_url = models.URLField(blank=True)
     url = models.URLField(blank=True)
-    posted = models.DateTimeField(auto_now_add=True)
+    published = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

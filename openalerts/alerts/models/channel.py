@@ -18,3 +18,7 @@ class Channel(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def alerts(self):
+        return self.alert_set.all().order_by("-published")
