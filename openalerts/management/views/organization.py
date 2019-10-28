@@ -9,7 +9,7 @@ class EditOrganizationView(
 ):
     template_name = "management/pages/edit_organization.html"
     model = Organization
-    fields = ["name", "website"]
+    fields = ["name", "website", "description"]
 
 class OrganizationView(
     SessionAuthenticationRequiredMixin, SessionOrgContextMixin, DetailView
