@@ -5,14 +5,14 @@ from management.models import Organization
 
 
 class EditOrganizationView(
-    SessionAuthenticationRequiredMixin, SessionOrgContextMixin, SessionOrgPermRequiredMixin, UpdateView
+    SessionAuthenticationRequiredMixin, SessionOrgContextMixin, UpdateView
 ):
     template_name = "management/pages/edit_organization.html"
     model = Organization
     fields = ["name", "website", "description"]
 
 class OrganizationView(
-    SessionAuthenticationRequiredMixin, SessionOrgContextMixin, SessionOrgPermRequiredMixin, DetailView
+    SessionAuthenticationRequiredMixin, SessionOrgContextMixin, DetailView
 ):
     template_name = "management/pages/organization.html"
     model = Organization
