@@ -5,6 +5,7 @@ class Organization(models.Model):
     name = models.CharField(max_length=128)
     presspass_uuid = models.UUIDField(editable=False)
     website = models.URLField(blank=True, default='')
+    description = models.TextField(blank=True, default='')
 
     @staticmethod
     def for_presspass_org(org):
