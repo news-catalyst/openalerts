@@ -1,6 +1,9 @@
 {% load humanize %}
 
-<a class="box" {% if alert.url %}href="{{alert.url}}"{% endif %}>
+<a class="box card" href="{% url "management:edit_alert" org_id=organization.id pk=alert.id %}">
     <p class="heading">{{alert.channel.name}} / {{alert.updated|naturaltime}}</p>
     <p>{{alert.content}}</p>
+    {% if alert.url %}
+        <p class="has-text-grey">Links to {{alert.url}}</p>
+    {% endif %}
 </a>
