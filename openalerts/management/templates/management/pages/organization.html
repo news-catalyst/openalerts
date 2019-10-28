@@ -1,12 +1,37 @@
 {% extends 'management/organization_base.html' %}
 
+{% load humanize %}
+
 {% block action %}
 <a href="{% url "management:create_alert" org_id=organization.id %}" class="button is-link is-outlined">+ Publish Alert</a>
 {% endblock %}
 
 {% block content %}
-Information about alerts, channels, and subscribers will eventually go here.
+<div class="columns">
+    <div class="column is-4">
+        <div class="box">
+            <p class="heading">Total Subscribers</p>
+            <h3 class="title is-size-3 has-text-weight-light">{{organization.subscriber_count|intcomma}}</h3>
+        </div>
+    </div>
+    <div class="column is-4">
+        <div class="box">
+            <p class="heading">Latest Alert</p>
+            <h3 class="title is-size-3 has-text-weight-light">{{organization.alerts.0.published|naturaltime}}</h3>
+        </div>
+    </div>
+    <div class="column is-4">
+        <div class="box">
+            <p class="heading">Total Alerts</p>
+            <h3 class="title is-size-3 has-text-weight-light">{{organization.alerts.count|intcomma}}</h3>
+        </div>
+    </div>
+</div>
+
+<div class="notification">
+    Embeds, instructions, the latest alerts, and graphs will eventually be shown here.
+</div>
 
 <hr>
-<a href="{% url 'management:edit_organization' pk=organization.id %}">Edit Organization</a>
+<a href="{% url 'management:edit_organization' pk=organization.id %}" class="button is-outlined is-small is-link">&#9998; Configure Organization</a>
 {% endblock %}

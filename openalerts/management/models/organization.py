@@ -1,5 +1,6 @@
 from django.db import models
 from django.shortcuts import reverse
+import alerts
 
 class Organization(models.Model):
     name = models.CharField(max_length=128)
@@ -30,4 +31,8 @@ class Organization(models.Model):
         return sum(
             [self.emailsubscription_set.all().count()]
         )
+
+    def alerts(self):
+        return alerts.models.Alert.objects.filter(channel__organization=self).order_by("-published")
+
     
