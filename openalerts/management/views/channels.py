@@ -55,7 +55,7 @@ class ChannelView(
     model = Channel
 
     def get_context_data(self, **kwargs):
-        paginator = Paginator(self.object.alerts, 1)
+        paginator = Paginator(self.object.alerts, 30)
         page_obj = paginator.get_page(self.request.GET.get("page", 0))
         context = super(ChannelView, self).get_context_data(**kwargs)
         context.update(dict(page_obj=page_obj, paginator=paginator))
