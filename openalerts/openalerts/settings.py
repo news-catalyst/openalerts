@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'social_django',
     'alerts',
     'management',
+    'subscriptions',
+    'rss'
 ]
 
 MIDDLEWARE = [
