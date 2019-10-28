@@ -3,6 +3,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.base import ContextMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.core.paginator import Paginator
 from management.mixins import SessionAuthenticationRequiredMixin, SessionOrgContextMixin, OrgContextMixin
 from management.models import Organization
 from alerts.models import Channel
@@ -12,7 +13,7 @@ class ChannelListView(
 ):
     template_name = "management/pages/channel_list.html"
     model = Organization
-    pk_url_kwarg = "org_id"    
+    pk_url_kwarg = "org_id"
 
 class CreateChannelView(
     SessionAuthenticationRequiredMixin, SessionOrgContextMixin, OrgContextMixin, CreateView
@@ -52,3 +53,10 @@ class ChannelView(
 ):
     template_name = "management/pages/channel.html"
     model = Channel
+
+    def get_context_data(self, **kwargs):
+        paginator = Paginator(self.object.alert_set.all().order_by("-updated"), 1)
+        page_obj = paginator.get_page(self.request.GET.get("page", 0))
+        context = super(ChannelView, self).get_context_data(**kwargs)
+        context.update(dict(page_obj=page_obj, paginator=paginator))
+        return context
