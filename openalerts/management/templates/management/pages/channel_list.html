@@ -13,7 +13,7 @@
     {% for channel in organization.channel_set.all %}
     <div class="column is-4">
         {% url 'management:channel' organization.id channel.id as url %}
-        {% include 'alerts/includes/channel.html' %}
+        {% include 'management/includes/channel.html' %}
     </div>
     {% empty %}
     <div class="notification">No channels have been created. <a
