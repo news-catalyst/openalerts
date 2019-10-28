@@ -1,0 +1,17 @@
+.is-underbar ul li a {
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: 16px;
+}
+
+.is-underbar a {
+    border-bottom: 3px solid #ffffff00;
+}
+
+.is-underbar ul li a:hover {
+    border-bottom: 3px solid #bbbbbb !important;
+}
+
+.is-underbar ul li.is-active a {
+    border-bottom: 3px solid #444444 !important;
+}
