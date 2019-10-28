@@ -15,7 +15,7 @@ class ChannelFeed(Feed):
         return Channel.objects.get(organization__id=org_id, slug=slug)
 
     def items(self, obj):
-        return obj.alerts[:20]
+        return obj.alerts[:15]
 
     def item_title(self, item):
         return f"Alert: " + item.channel.name # TODO: make configurable
