@@ -1,3 +1,15 @@
+/* Checkboxes */
+
 .multiple-checkbox ul {
     columns: 3;
+}
+
+/* Boxes */
+
+.box {
+    box-shadow: 0 0 1px 1px rgba(10,10,10,.075), 2px 4px 5px 1px rgba(10,10,10,.05);
+}
+
+a.box:hover {
+    box-shadow: 0 0 1px 1px hsl(217, 71%, 53%), 2px 4px 5px 1px rgba(10,10,10,.05);
 }
