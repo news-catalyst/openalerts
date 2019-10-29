@@ -14,6 +14,23 @@
         .title, .is-primary-color {
             color: {{organization.primary_color}} !important;
         }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            border-radius: 6px;
+            background-color: white;
+            padding: 20px;
+        }
+
+        .logo {
+            max-width: 200px;
+        }
+
+        body {
+            background-color: #eeeeee;
+            min-height: 100vh;
+        }
     </style>
 </head>
 
@@ -22,22 +39,20 @@
     {% endblock %}
     <section class="section">
         <div class="container">
-            <div class="columns">
-                <div class="column is-3">
-                    {% if organization.logo_url %}
-                    <img src="{organization.logo_url" alt="The logo of {{organization.name}}.">
-                    {% else %}
-                    <h1 class="title is-size-1">
-                        {{organization.name}}
-                    </h1>
-                    <p>{{organization.description}}</p>
-                    {% endif %}
-                </div>
-                <div class="column is-9">
-                    {% block content %}
-                    {% endblock %}
-                </div>
-            </div>
+            <a href="{{organization.website}}">
+                {% if organization.logo_url %}
+                <figure class="image logo">
+                    <img src="{{organization.logo_url}}" alt="The logo of {{organization.name}}." height="150">
+                </figure>
+                {% else %}
+                <h1 class="title is-size-1">
+                    {{organization.name}}
+                </h1>
+                {% endif %}
+            </a>
+            <hr>
+            {% block content %}
+            {% endblock %}
         </div>
     </section>
 </body>

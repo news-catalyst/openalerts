@@ -34,7 +34,7 @@ class EmailVerifyView(OrganizationMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         token = self.kwargs["token"]
         subscription = EmailSubscription.activate_verification_token(token)
-        return reverse("public:email_settings", args=[subscription.get_access_token()])
+        return reverse("public:email_settings", args=[subscription.get_access_token()]) + "?verified=True"
 
 
 class EmailSettingsView(OrganizationMixin, UpdateView):

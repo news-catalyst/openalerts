@@ -3,10 +3,11 @@
 {% block content %}
 <h3 class="title is-size-3 has-text-weight-normal">Unsubscribe</h3>
 <p class="has-text-danger">Are you sure you want to unsubscribe from all email alerts from {{organization.name}}?</p>
+<br>
 <form method="POST">
     {% csrf_token %}
     {{form}}
-    <a type="{% url 'public:email_settings' view.kwargs.token %}" class="button is-primary">Go Back</a>
+    <a type="{% url 'public:email_settings' view.kwargs.token %}" class="button is-success is-outlined">Go Back</a>
     <button type="submit" class="button is-danger">Unsubscribe</button>
 </form>
 {% endblock %}

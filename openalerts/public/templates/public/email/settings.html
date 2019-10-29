@@ -3,19 +3,25 @@
 {% load bulma_tags %}
 
 {% block content %}
-<h3 class="title is-size-3 has-text-weight-normal">Manage Email Alerts</h3>
 {% if request.GET.success %}
 <div class="notification is-success">
     <h4 class="is-size-4">Preferences updated!</h4>
     <br>
-    <p>Your email alert preferences were successfully updated.</p>
+    <p>Your email alert preferences were successfully updated. You may either continue editing your settings below, or leave the page.</p>
 </div>
-{% else %}
+{% endif %}
+{% if request.GET.verified %}
+<div class="notification is-success">
+    <h4 class="is-size-4">Email verified!</h4>
+    <br>
+    <p>Your email has been verified! You will now receive alerts from {{organization.name}}. You may now optionally change your subscription settings by changing which channels of alerts you wish to receive.</p>
+</div>
+{% endif %}
+<h3 class="title is-size-3 has-text-weight-normal">Manage Email Alerts</h3>
 <form method="POST">
     {% csrf_token %}
     {{form|bulma}}
-    <button type="submit" class="button is-primary">Save</button>
+    <button type="submit" class="button is-link">Save</button>
     <a href="{% url 'public:email_delete' token=view.kwargs.token %}" class="button is-danger is-outlined">Unsubscribe</a>
 </form>
-{% endif %}
 {% endblock %}

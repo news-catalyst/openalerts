@@ -1,0 +1,16 @@
+{% load bulma_tags %}
+
+<h3 class="title is-size-3 has-text-weight-normal">Email Alerts</h3>
+{% if request.GET.success %}
+<div class="notification is-success">
+    <h4 class="is-size-4">Check your email!</h4>
+    <br>
+    <p>Before we can send you alerts, you need to verify your email. Check your inbox for further instructions.</p>
+</div>
+{% else %}
+<form method="POST">
+    {% csrf_token %}
+    {{form|bulma}}
+    <button type="submit" class="button is-link">Sign Up</button>
+</form>
+{% endif %}

@@ -5,7 +5,10 @@ from alerts.models import Channel
 
 class EmailSignupForm(forms.Form):
     email = forms.EmailField(
-        widget=forms.EmailInput(attrs={"email": "Enter your email..."})
+        widget=forms.EmailInput(
+            attrs={"placeholder": "Enter your email..."}
+        ),
+        label="",
     )
 
 
