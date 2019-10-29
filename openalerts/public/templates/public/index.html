@@ -5,20 +5,42 @@
 {% block content %}
 <p>{{organization.description}}</p>
 <hr>
-<div class="columns">
-    <div class="column is-4">
-        <h5 class="title is-size-5">Sign up</h5>
-        <a href="{% url 'public:email_signup' %}" class="button is-link is-block">Email Alerts</a>
-        <br>
-        <a href="{% url 'public:email_signup' %}" class="button is-link is-block">Desktop Alerts</a>
-    </div>
+<div class="columns is-reversed-mobile">
     <div class="column">
         <h5 class="title is-size-5">Latest Alerts</h5>
         {% for alert in organization.alerts|slice:":3" %}
-            <a href="{{alert.url}}" class="box">
-                <p class="heading">{{alert.channel.name}} / {{alert.updated|naturaltime}}</p>
-                <p>{{alert.content}}</p>
-            </a>
+        <a href="{{alert.url}}" class="box">
+            <p class="heading">{{alert.channel.name}} / {{alert.updated|naturaltime}}</p>
+            <p>{{alert.content}}</p>
+        </a>
         {% endfor %}
     </div>
+    <div class="column is-4">
+        <h5 class="title is-size-5">Get Alerts</h5>
+        <a href="{% url 'public:email_signup' %}" class="button is-primary is-block">Via Email</a>
+        <br>
+        <a href="" class="button is-primary is-block">Via Desktop</a>
+        <br>
+        <div class="dropdown is-hoverable is-fullwidth">
+            <div class="dropdown-trigger is-fullwidth">
+                <button class="button is-primary is-fullwidth" aria-haspopup="true" aria-controls="rss-menu">
+                    <span>Via RSS</span>
+                </button>
+            </div>
+            <div class="dropdown-menu" id="rss-menu" role="menu">
+                <div class="dropdown-content">
+                    <a href="{% url 'rss:organization_feed' organization.id %}" class="dropdown-item">
+                        All Alerts
+                    </a>
+                    <hr class="dropdown-divider">
+                    {% for channel in organization.channel_set.all %}
+                    <a class="dropdown-item" href="{% url 'rss:channel_feed' organization.id channel.slug %}">
+                        {{channel.name}}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
