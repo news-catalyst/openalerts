@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'alerts',
     'management',
     'subscriptions',
-    'rss'
+    'rss',
+    'public'
 ]
 
 MIDDLEWARE = [
