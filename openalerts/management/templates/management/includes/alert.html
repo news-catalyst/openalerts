@@ -1,9 +1,22 @@
 {% load humanize %}
 
-<a class="box card" href="{% url "management:edit_alert" org_id=organization.id pk=alert.id %}">
-    <p class="heading">{{alert.channel.name}} / {{alert.updated|naturaltime}}</p>
-    <p>{{alert.content}}</p>
-    {% if alert.url %}
-        <p class="has-text-grey">Links to {{alert.url}}</p>
-    {% endif %}
-</a>
+<div class="columns">
+    <div class="column is-4">
+        <a class="box card" href="{% url "management:edit_alert" org_id=organization.id pk=alert.id %}">
+            <p class="heading">{{alert.channel.name}}</p>
+            <p>{{alert.content}}</p>
+        </a>
+    </div>
+    <div class="column is-4 has-text-grey">
+        <p>Published: {{alert.published}} ({{alert.published|naturaltime}})</p>
+        <br>
+        <p>Last updated: {{alert.updated}} ({{alert.updated|naturaltime}})</p>
+        {% if alert.url %}
+        <br>
+        <p>Links to: {{alert.url}}</p>
+        {% endif %}
+    </div>
+    <div class="column is-4">
+        Analytics info will eventually appear here.
+    </div>
+</div>

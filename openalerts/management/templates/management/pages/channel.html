@@ -7,19 +7,20 @@
 {% endblock %}
 
 {% block action %}
-<a href="{% url "management:edit_channel" org_id=organization.id pk=object.id %}" class="button is-link is-outlined">&#9998; Edit Channel</a>
-<a href="{% url "management:create_alert" org_id=organization.id%}?channel={{object.id}}" class="button is-link is-outlined">+ Publish Alert</a>
+<a href="{% url "management:edit_channel" org_id=organization.id pk=object.id %}"
+    class="button is-link is-outlined">&#9998; Edit Channel</a>
+<a href="{% url "management:create_alert" org_id=organization.id%}?channel={{object.id}}"
+    class="button is-link is-outlined">+ Publish Alert</a>
 {% endblock %}
 
 {% block content %}
-<div class="columns is-multiline">
-    {% for alert in page_obj %}
-    <div class="column is-4">
-        {% include 'management/includes/alert.html' %}
-    </div>
-    {% empty %}
-    <div class="notification">No alerts have been created. <a href="{% url 'management:create_alert' org_id=organization.id %}?channel={{object.id}}">Click here</a> to create one.</div>
-    {% endfor %}
-</div>
+{% for alert in page_obj %}
+{% include 'management/includes/alert.html' %}
+<hr>
+{% empty %}
+<div class="notification">No alerts have been created. <a
+        href="{% url 'management:create_alert' org_id=organization.id %}?channel={{object.id}}">Click here</a> to create
+    one.</div>
+{% endfor %}
 {% pagination page_obj url_parameters="" %}
 {% endblock %}
