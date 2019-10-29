@@ -8,7 +8,7 @@ from alerts.models import Channel, Alert
 class CreateAlertView(SessionAuthenticationRequiredMixin, SessionOrgContextMixin, OrgContextMixin, CreateView):
     template_name = "management/pages/edit_alert.html"
     model = Alert
-    fields = ["channel", "content", "url", "image_url"]
+    fields = ["channel", "content", "url"]
 
     def get_form(self, *args, **kwargs):
         form = super(CreateAlertView, self).get_form(*args, **kwargs)
