@@ -1,0 +1,5 @@
+{{alert.content}}
+
+For more information, go to the following URL: {{alert.url}}
+
+{% include 'subscriptions/email/footer.txt' %}

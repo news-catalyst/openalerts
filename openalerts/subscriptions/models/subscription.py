@@ -102,9 +102,17 @@ class EmailSubscriptionGroup(SubscriptionGroup):
         # TODO: send nice-looking HTML messages, potentially with
         # the news organization's logo
         emails = [
-            (
+            (  # TODO: design nice message template
                 f"{alert.channel.organization.name}: {alert.channel.name}",
-                f"{alert.content}",  # TODO: make an actual HTML message template
+                render_to_string(
+                    "subscriptions/email/alert.txt",
+                    context={
+                        "alert": alert,
+                        "organization": self.organization,
+                        "subscription": self,
+                        "link_prefix": settings.PROTOCOL_AND_HOST,
+                    },
+                ),
                 f"{alert.organization.name} <{settings.EMAIL_FROM}>",
                 [subscription.email],
             )
