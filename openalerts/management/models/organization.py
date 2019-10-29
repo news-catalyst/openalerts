@@ -7,6 +7,8 @@ class Organization(models.Model):
     presspass_uuid = models.UUIDField(editable=False)
     website = models.URLField(blank=True, default='')
     description = models.TextField(blank=True, default='')
+    primary_color = models.CharField(max_length=7, default="#444444")
+    logo_url = models.URLField(null=True, blank=True)
 
     @staticmethod
     def for_presspass_org(org):
