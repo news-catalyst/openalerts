@@ -13,3 +13,16 @@
 a.box:hover {
     box-shadow: 0 0 1px 1px hsl(217, 71%, 53%), 2px 4px 5px 1px rgba(10,10,10,.05);
 }
+
+@media screen and (max-width: 768px){
+    .is-reversed-mobile {
+        flex-direction: column-reverse;
+        display: flex;
+    }
+}
+
+/* Helpers */
+
+.is-fullwidth {
+    width: 100%;
+}
