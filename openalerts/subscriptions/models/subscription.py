@@ -108,12 +108,12 @@ class EmailSubscriptionGroup(SubscriptionGroup):
                     "subscriptions/email/alert.txt",
                     context={
                         "alert": alert,
-                        "organization": self.organization,
-                        "subscription": self,
+                        "organization": subscription.organization,
+                        "subscription": subscription,
                         "link_prefix": settings.PROTOCOL_AND_HOST,
                     },
                 ),
-                f"{alert.organization.name} <{settings.EMAIL_FROM}>",
+                f"{alert.channel.organization.name} <{settings.EMAIL_FROM}>",
                 [subscription.email],
             )
             for subscription in self.subscriptions

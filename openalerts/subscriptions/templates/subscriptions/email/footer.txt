@@ -1,1 +1,1 @@
-To manage your alert settings or to unsubscribe from email alerts, please go to the following link: {{link_prefix}}/{% url 'public:email_settings' subscription.get_access_token %} (note that this link expires after 30 days)
+To manage your alert settings or to unsubscribe from email alerts, please go to the following link: {{link_prefix}}{% url 'public:email_settings' subscription.get_access_token %} (note that this link expires after 30 days)
