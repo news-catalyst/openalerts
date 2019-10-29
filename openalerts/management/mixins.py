@@ -11,17 +11,16 @@ class SessionAuthenticationRequiredMixin(AccessMixin):
     def dispatch(self, request, *args, **kwargs):
         if not request.session.get("presspass_authenticated", False) == True:
             return redirect("management:login")
-        context = self.get_context_data()
-        if "organization" in context and context["organization"].id not in [
-            org.id for org in context.organizations
+        if "org_id" in kwargs and kwargs["org_id"] not in [
+            org.id for org in Organization.for_session(request.session)
         ]:
             return HttpResponseForbidden("403 forbidden")
         return super().dispatch(request, *args, **kwargs)
 
 
 class SessionOrgContextMixin(ContextMixin):
-    def get_context_data(self, **kwargs):
-        context = super(SessionOrgContextMixin, self).get_context_data(**kwargs)
+    def get_context_data(self, *args, **kwargs):
+        context = super(SessionOrgContextMixin, self).get_context_data(*args, **kwargs)
         context.update(
             dict(organizations=Organization.for_session(self.request.session))
         )
@@ -29,8 +28,8 @@ class SessionOrgContextMixin(ContextMixin):
 
 
 class OrgContextMixin(ContextMixin):
-    def get_context_data(self, **kwargs):
-        context = super(OrgContextMixin, self).get_context_data(**kwargs)
+    def get_context_data(self, *args, **kwargs):
+        context = super(OrgContextMixin, self).get_context_data(*args, **kwargs)
         context.update(
             dict(organization=Organization.objects.get(id=self.kwargs["org_id"]))
         )

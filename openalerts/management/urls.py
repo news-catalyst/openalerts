@@ -20,12 +20,12 @@ app_name = "management"
 urlpatterns = [
     path("", DashboardView.as_view(), name="dashboard"),
     path(
-        "organization/<int:pk>/",
+        "organization/<int:org_id>/",
         OrganizationView.as_view(extra_context={"tab_scope": "overview"}),
         name="organization",
     ),
     path(
-        "organization/<int:pk>/edit/",
+        "organization/<int:org_id>/edit/",
         EditOrganizationView.as_view(extra_context={"tab_scope": "overview"}),
         name="edit_organization",
     ),
