@@ -1,0 +1,21 @@
+{% extends 'public/base.html' %}
+
+{% load bulma_tags %}
+
+{% block content %}
+<h3 class="title is-size-3 has-text-weight-normal">Manage Email Alerts</h3>
+{% if request.GET.success %}
+<div class="notification is-success">
+    <h4 class="is-size-4">Preferences updated!</h4>
+    <br>
+    <p>Your email alert preferences were successfully updated.</p>
+</div>
+{% else %}
+<form method="POST">
+    {% csrf_token %}
+    {{form|bulma}}
+    <button type="submit" class="button is-primary">Save</button>
+    <a href="{% url 'public:email_delete' token=view.kwargs.token %}" class="button is-danger is-outlined">Unsubscribe</a>
+</form>
+{% endif %}
+{% endblock %}

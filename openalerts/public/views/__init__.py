@@ -1,1 +1,1 @@
-from .email import EmailSignUpView
+from .email import EmailSignUpView, EmailVerifyView, EmailSettingsView, EmailDeleteView, EmailDeleteConfirmView

@@ -55,12 +55,23 @@ class EmailSubscription(models.Model):
         return TimestampSigner().sign(str(self.id))
 
     @staticmethod
-    def activate_verification_token(self, token):
+    def activate_verification_token(token):
         subscription = get_object_or_404(
             EmailSubscription, id=TimestampSigner().unsign(token, max_age=24 * 60 * 60)
         )
         subscription.verified = True
         subscription.save()
+        return subscription
+
+    def get_access_token(self):
+        return TimestampSigner().sign(str(self.id))
+
+    @staticmethod
+    def for_access_token(token):
+        return get_object_or_404(
+            EmailSubscription,
+            id=TimestampSigner().unsign(token, max_age=30 * 24 * 60 * 60),
+        )
 
     def send_opt_in(self):
         link = "/TODO"
@@ -68,7 +79,12 @@ class EmailSubscription(models.Model):
             "Confirm email sign-up",
             render_to_string(
                 "subscriptions/email/opt-in.txt",
-                context={"link": link, "organization": self.organization, "link_prefix": settings.PROTOCOL_AND_HOST},
+                context={
+                    "link": link,
+                    "organization": self.organization,
+                    "subscription": self,
+                    "link_prefix": settings.PROTOCOL_AND_HOST,
+                },
             ),
             f"{self.organization.name} <{settings.EMAIL_FROM}>",
             [self.email],

@@ -1,6 +1,8 @@
 Hello,
 
-To verify your email address for {{organization.name}} alerts and manage your preferences, please open the following link: {{link_prefix}}{{link}}
+To verify your email address for {{organization.name}} alerts and manage your preferences, please open the following link: {{link_prefix}}{% url 'public:email_verify' subscription.get_verification_token %}
+
+For your security, this link will expire in 24 hours.
 
 If you didn't request email alerts from {{organization.name}}, you can safely ignore this email.
 

@@ -1,1 +1,1 @@
-from .email import EmailSignupForm
+from .email import EmailSignupForm, EmailSettingsForm
