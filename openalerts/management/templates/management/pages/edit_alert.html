@@ -16,6 +16,11 @@
 <div class="columns">
     <div class="column is-4">
         <form method="POST">
+            {% if view.edit %}
+            <div class="notification">
+                {{object.content}}
+            </div>
+            {% endif %}
             {{form|bulma}}
             {% csrf_token %}
             <br>
@@ -25,6 +30,11 @@
                 class="button is-danger is-outlined">Delete</a>
             {% endif %}
         </form>
+        <hr>
+        <p class="has-text-grey">
+            Please note that only an alert's URL is editable after it is published. If there is an error in the content
+            of an alert, we recommend deleting the alert and publishing a correction.
+        </p>
     </div>
 </div>
 {% endblock %}
