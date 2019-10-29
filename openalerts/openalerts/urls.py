@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('management/', include("management.urls", namespace='management')),
     path('auth/', include('social_django.urls', namespace='auth')),
-    path('rss/', include('rss.urls', namespace='rss'))
+    path('rss/', include('rss.urls', namespace='rss')),
+    path('', include('public.urls', namespace='public'))
 ]

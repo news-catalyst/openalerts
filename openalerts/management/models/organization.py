@@ -9,6 +9,7 @@ class Organization(models.Model):
     description = models.TextField(blank=True, default='', help_text="Your organization's description (try to keep this under 250 characters).")
     primary_color = models.CharField(max_length=7, default="#444444", help_text="Your news organization's primary brand color.")
     logo_url = models.URLField(blank=True, default='', help_text="The URL of your news organization's logo (for use on public facing pages).")
+    custom_hostname = models.TextField(null=True, blank=True, unique=True)
 
     @staticmethod
     def for_presspass_org(org):
