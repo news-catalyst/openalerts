@@ -7,15 +7,15 @@
 {% endblock %}
 
 {% block content %}
+{% with alert=object %}
+{% include 'management/includes/alert.html' %}
+{% endwith %}
 <div class="columns">
     <div class="column is-4">
-        {% with alert=object %}
-        {% include 'management/includes/alert.html' %}
-        {% endwith %}
         <div class="has-text-danger">Are you sure you want to delete this alert? This action cannot be undone.</div>
         <br>
         <form method="POST">
-            {{form|bulma}}
+            {{form}}
             {% csrf_token %}
             <button type="submit" class="button is-danger">Delete</button>
         </form>

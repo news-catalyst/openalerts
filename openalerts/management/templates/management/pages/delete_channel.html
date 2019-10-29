@@ -16,7 +16,7 @@
             cannot be undone.</div>
         <br>
         <form method="POST">
-            {{form|bulma}}
+            {{form}}
             {% csrf_token %}
             <button type="submit" class="button is-danger">Delete</button>
         </form>
