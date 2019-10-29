@@ -3,12 +3,12 @@ from django.shortcuts import reverse
 import alerts
 
 class Organization(models.Model):
-    name = models.CharField(max_length=128)
+    name = models.CharField(max_length=128, help_text="The name of your news organization (e.g. The New York Times).")
     presspass_uuid = models.UUIDField(editable=False)
-    website = models.URLField(blank=True, default='')
-    description = models.TextField(blank=True, default='')
+    website = models.URLField(blank=True, default='', help_text="The full URL of your website (e.g. https://nytimes.com).")
+    description = models.TextField(blank=True, default='', help_text="Your organization's description (try to keep this under 250 characters).")
     primary_color = models.CharField(max_length=7, default="#444444", help_text="Your news organization's primary brand color.")
-    logo_url = models.URLField(null=True, blank=True, help_text="The URL of your news organization's logo (for use on public facing pages).")
+    logo_url = models.URLField(blank=True, default='', help_text="The URL of your news organization's logo (for use on public facing pages).")
 
     @staticmethod
     def for_presspass_org(org):
