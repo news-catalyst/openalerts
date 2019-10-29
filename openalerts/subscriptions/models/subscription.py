@@ -1,11 +1,13 @@
 from django.db import models
+from django.conf import settings
 from management.models import Organization
 from alerts.models import Channel
 from django.core.signing import TimestampSigner
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, reverse
+from django.template.loader import render_to_string
 
 # Emails
-from django.core.mail import send_mass_mail
+from django.core.mail import send_mass_mail, send_mail
 
 
 # SUBSCRIPTION GROUPS
@@ -54,9 +56,23 @@ class EmailSubscription(models.Model):
 
     @staticmethod
     def activate_verification_token(self, token):
-        subscription = get_object_or_404(EmailSubscription, id=TimestampSigner().unsign(token, max_age=24*60*60))
+        subscription = get_object_or_404(
+            EmailSubscription, id=TimestampSigner().unsign(token, max_age=24 * 60 * 60)
+        )
         subscription.verified = True
         subscription.save()
+
+    def send_opt_in(self):
+        link = "/TODO"
+        send_mail(
+            "Confirm email sign-up",
+            render_to_string(
+                "subscriptions/email/opt-in.txt",
+                context={"link": link, "organization": self.organization, "link_prefix": settings.PROTOCOL_AND_HOST},
+            ),
+            f"{self.organization.name} <{settings.EMAIL_FROM}>",
+            [self.email],
+        )
 
 
 class EmailSubscriptionGroup(SubscriptionGroup):
@@ -72,8 +88,8 @@ class EmailSubscriptionGroup(SubscriptionGroup):
         emails = [
             (
                 f"{alert.channel.organization.name}: {alert.channel.name}",
-                f"{alert.content}",
-                "noreply@outgoing.openalerts.org",
+                f"{alert.content}",  # TODO: make an actual HTML message template
+                f"{alert.organization.name} <{settings.EMAIL_FROM}>",
                 [subscription.email],
             )
             for subscription in self.subscriptions

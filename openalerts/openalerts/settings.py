@@ -150,4 +150,7 @@ LOGIN_URL = "/management/login/"
 
 PRESSPASS_URL = "http://dev.squarelet.com"
 
+PROTOCOL_AND_HOST = "http://localhost:8000"
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_FROM = "noreply@outgoing.openalerts.org"
