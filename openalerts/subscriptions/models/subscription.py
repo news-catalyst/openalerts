@@ -5,6 +5,9 @@ from alerts.models import Channel
 from django.core.signing import TimestampSigner
 from django.shortcuts import get_object_or_404, reverse
 from django.template.loader import render_to_string
+from webpush.models import PushInformation, Group
+from webpush.utils import send_notification_to_group
+import json
 
 # Emails
 from django.core.mail import send_mass_mail, send_mail
@@ -120,3 +123,26 @@ class EmailSubscriptionGroup(SubscriptionGroup):
         ]
         send_mass_mail(emails)
 
+# WEBPUSH SUBSCRIPTIONS
+# ---------------------
+
+class WebpushSubscription(models.Model):
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
+    subscription = models.ForeignKey(PushInformation, on_delete=models.CASCADE)
+
+class WebpushSubscriptionGroup(SubscriptionGroup):
+    def __init__(self, group):
+        self.group = group
+        super(WebpushSubscriptionGroup, self).__init__(None)
+
+    @staticmethod
+    def for_channel(channel):
+        group = Group.objects.get(name=str(channel.organization.id))
+        return WebpushSubscriptionGroup(group)
+
+    def push(self, alert):
+        send_notification_to_group(self.group.name, payload=json.dumps({
+            "head": f"{alert.channel.name} / {alert.channel.organization.name}", # TODO: make configurable
+            "body": alert.content,
+            "url": alert.url
+        }), ttl=1000)

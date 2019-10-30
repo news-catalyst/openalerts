@@ -1,1 +1,1 @@
-from .subscription import SubscriptionGroup, EmailSubscription, EmailSubscriptionGroup
+from .subscription import SubscriptionGroup, EmailSubscription, EmailSubscriptionGroup, WebpushSubscription, WebpushSubscriptionGroup

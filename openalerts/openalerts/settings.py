@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'bulma',
     'social_django',
+    'webpush',
+
+    # LOCAL
     'alerts',
     'management',
     'subscriptions',
@@ -145,6 +148,12 @@ SOCIAL_AUTH_URL_NAMESPACE = 'auth'
 
 SOCIAL_AUTH_PRESSPASS_KEY = os.getenv('PRESSPASS_CLIENT_ID')
 # SOCIAL_AUTH_PRESSPASS_SECRET = "16d4fd82b708834e2f051ec8680275e725d8af263ce17ac9528c81ad"
+
+WEBPUSH_SETTINGS = {
+    "VAPID_PUBLIC_KEY": os.getenv('VAPID_PUBLIC_KEY'),
+    "VAPID_PRIVATE_KEY": os.getenv('VAPID_PRIVATE_KEY'),
+    "VAPID_ADMIN_EMAIL": os.getenv('VAPID_ADMIN_EMAIL')
+}
 
 LOGIN_URL = "/management/login/"
 

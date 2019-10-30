@@ -32,7 +32,8 @@ class Organization(models.Model):
 
     def subscriber_count(self):
         return sum(
-            [self.emailsubscription_set.all().count()]
+            [self.emailsubscription_set.all().count(),
+            self.webpushsubscription_set.all().count()]
         )
 
     def alerts(self):
