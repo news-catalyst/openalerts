@@ -17,8 +17,9 @@
 - [x] Add subscriber system
 - [x] Add email distribution
 - [] Add SMS distribution
-- [] Add webpush distribution
+- [x] Add webpush distribution
 - [] Add click tracking
 - [] Add total view metrics estimates
 - [] Finalize management design
 - [] Finalize front-end design
+- [] Autodetect when push notifications are enabled and show user different content
