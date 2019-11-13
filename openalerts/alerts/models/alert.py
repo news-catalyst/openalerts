@@ -1,6 +1,6 @@
 from django.db import models
 from .channel import Channel
-
+from .source import Source
 
 class Alert(models.Model):
     channel = models.ForeignKey(
@@ -20,3 +20,8 @@ class Alert(models.Model):
     )
     published = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    source = models.ForeignKey(Source, on_delete=models.SET_NULL, null=True)
+    source_identifier = models.TextField(null=True) # Because null != null, this does not violate unique constraint
+
+    class Meta:
+        unique_together = ('source', 'source_identifier')
