@@ -8,7 +8,7 @@
 
 {% block action %}
 <a href="{% url "management:edit_channel" org_id=organization.id pk=object.id %}"
-    class="button is-link is-outlined">&#9998; Edit Channel</a>
+    class="button is-link is-outlined">&#9998; Manage Channel</a>
 <a href="{% url "management:create_alert" org_id=organization.id%}?channel={{object.id}}"
     class="button is-link is-outlined">+ Publish Alert</a>
 {% endblock %}

@@ -36,7 +36,7 @@
                             href="{% url 'management:channel_list' org_id=organization.id %}">Channels</a></li>
                     <li {% if tab_scope == "publish" %}class="is-active" {% endif %}><a
                         href="{% url 'management:create_alert' org_id=organization.id %}">Alerts</a></li>
-                    <li {% if tab_scope == "publish" %}class="is-active" {% endif %}><a
+                    <li><a
                         href="{% url 'public:index' %}?org={{organization.id}}">Public View</a></li>
                 </ul>
             </div>

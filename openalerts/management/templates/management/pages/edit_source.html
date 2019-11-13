@@ -6,18 +6,11 @@
 / Channels / Edit
 {% endblock %}
 
-{% block action %}
-    {% if object %}
-    <a href="{% url "management:source_list" org_id=organization.id channel_id=object.id %}"
-        class="button is-link is-outlined">&#9998; Manage Sources</a>
-    {% endif %}
-{% endblock %}
-
 {% block content %}
 {% if object %}
-<h1 class="is-size-4">Manage Channel</h1>
+<h1 class="is-size-4">Edit Source</h1>
 {% else %}
-<h1 class="is-size-4">Create Channel</h1>
+<h1 class="is-size-4">Create Source</h1>
 {% endif %}
 <br>
 <div class="columns">

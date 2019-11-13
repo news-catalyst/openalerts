@@ -13,6 +13,9 @@ from .views import (
     EditAlertView,
     DeleteAlertView,
     DeleteChannelView,
+    SourceListView,
+    DeleteSourceView,
+    CreateSourceView
 )
 
 app_name = "management"
@@ -53,6 +56,21 @@ urlpatterns = [
         "organization/<int:org_id>/channels/<int:pk>/delete/",
         DeleteChannelView.as_view(extra_context={"tab_scope": "channels"}),
         name="delete_channel",
+    ),
+    path(
+        "organization/<int:org_id>/channels/<int:channel_id>/sources/",
+        SourceListView.as_view(extra_context={"tab_scope": "channels"}),
+        name="source_list"
+    ),
+    path(
+        "organization/<int:org_id>/channels/<int:channel_id>/sources/create/",
+        CreateSourceView.as_view(extra_context={"tab_scope": "channels"}),
+        name="create_source"
+    ),
+    path(
+        "organization/<int:org_id>/channels/<int:channel_id>/sources/<int:pk>/delete/",
+        DeleteSourceView.as_view(extra_context={"tab_scope": "channels"}),
+        name="delete_source"
     ),
     path(
         "organization/<int:org_id>/alert/publish/",

@@ -1,0 +1,26 @@
+{% extends 'management/organization_base.html' %}
+
+{% block subsection %}
+/ {{channel.name}} / Sources
+{% endblock %}
+
+{% block action %}
+<a href="{% url 'management:create_source' org_id=organization.id channel_id=object.id %}"
+    class="button is-link is-outlined">+ Create Source</a>
+{% endblock %}
+
+{% block content %}
+<div class="columns is-multiline">
+    {% for source in channel.source_set.all %}
+    <div class="column is-4">
+        {% url 'management:delete_source' organization.id object.id source.id as url %}
+        {% include 'management/includes/source.html' %}
+    </div>
+    {% empty %}
+    <div class="notification">No sources have been created. <a
+            href="{% url 'management:create_source' org_id=organization.id channel_id=channel.id %}">Click here</a> to
+        create one.
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
