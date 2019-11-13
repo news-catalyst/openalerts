@@ -14,6 +14,7 @@ social-auth-core = {extras = ["openidconnect"],version = "*"}
 social-auth-presspass = "*"
 django-bulma = "*"
 django-webpush = "*"
+tweepy = "*"
 
 [requires]
 python_version = "3.6"

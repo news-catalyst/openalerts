@@ -163,3 +163,8 @@ PROTOCOL_AND_HOST = "http://localhost:8000"
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_FROM = "noreply@outgoing.openalerts.org"
+
+TWITTER_CONSUMER_KEY = os.getenv("TWITTER_CONSUMER_KEY", None)
+TWITTER_CONSUMER_SECRET = os.getenv("TWITTER_CONSUMER_SECRET", None)
+TWITTER_ACCESS_TOKEN = os.getenv("TWITTER_ACCESS_TOKEN", None)
+TWITTER_ACCESS_TOKEN_SECRET = os.getenv("TWITTER_ACCESS_TOKEN_SECRET", None)
