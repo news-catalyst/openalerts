@@ -46,7 +46,7 @@ class Command(BaseCommand):
                 # Get core data
                 text = status.text
                 if hasattr(status, "extended_tweet"):
-                    text = status.extended_tweet.full_text
+                    text = status.extended_tweet["full_text"]
                 url = ""
                 if hasattr(status, "urls") and len(status.urls) > 0:
                     url = status.urls[0].expanded_url
