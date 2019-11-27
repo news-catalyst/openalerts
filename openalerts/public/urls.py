@@ -5,7 +5,9 @@ from .views import (
     EmailSettingsView,
     EmailDeleteView,
     EmailDeleteConfirmView,
-    IndexView
+    IndexView,
+    UrlRedirectView,
+    UnknownUrlView
 )
 
 app_name = "public"
@@ -16,5 +18,7 @@ urlpatterns = [
     path("email/settings/<str:token>/", EmailSettingsView.as_view(extra_context={"title": "Email Settings"}), name="email_settings"),
     path("email/unsubscribe/confirm/", EmailDeleteConfirmView.as_view(extra_context={"title": "Email Unsubscribe"}), name="email_delete_confirm"),
     path("email/unsubscribe/<str:token>/", EmailDeleteView.as_view(extra_context={"title": "Email Unsubscribe Confirmed"}), name="email_delete"),
+    path("redirect/<int:id>/", UrlRedirectView.as_view(), name="url_redirect"),
+    path("redirect/unknown/", UnknownUrlView.as_view(extra_context={"title": "Unknown Link"}), name="unknown_url"),
     path("", IndexView.as_view(), name="index")
 ]

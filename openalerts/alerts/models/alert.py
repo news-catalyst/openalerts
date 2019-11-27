@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import reverse
 from .channel import Channel
 from .source import Source
 
@@ -25,3 +26,8 @@ class Alert(models.Model):
 
     class Meta:
         unique_together = ('source', 'source_identifier')
+
+    def get_public_url(self):
+        return reverse("public:url_redirect", kwargs={
+            "id": self.pk
+        })

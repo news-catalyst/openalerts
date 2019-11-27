@@ -144,5 +144,5 @@ class WebpushSubscriptionGroup(SubscriptionGroup):
         send_notification_to_group(self.group.name, payload=json.dumps({
             "head": f"{alert.channel.name} / {alert.channel.organization.name}", # TODO: make configurable
             "body": alert.content,
-            "url": alert.url
+            "url": settings.PROTOCOL_AND_HOST + alert.get_public_url()
         }), ttl=1000)
