@@ -11,14 +11,14 @@
 - [] Allow orgs to add their own analytics/scripts
 - [x] Improve organization selection view
 - [x] Add RSS channel view
-- [] Add a way for orgs to link channels to a Twitter account
+- [x] Add a way for orgs to link channels to a Twitter account
 - [x] Add alert pagination on both front- and back-end
 - [] Add alert searching on back-end
 - [x] Add subscriber system
 - [x] Add email distribution
 - [] Add SMS distribution
 - [x] Add webpush distribution
-- [] Add click tracking
+- [x] Add click tracking
 - [] Add total view metrics estimates
 - [] Finalize management design
 - [] Finalize front-end design
