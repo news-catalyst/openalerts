@@ -2,9 +2,11 @@
 
 {% load bulma_tags %}
 
+{% block subsection %}
+/ Configure
+{% endblock %}
+
 {% block content %}
-<h5 class="is-size-5">Edit Organization</h5>
-<br>
 <div class="columns">
     <form class="form column is-4" method="POST">
         {% csrf_token %}

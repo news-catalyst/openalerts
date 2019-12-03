@@ -60,6 +60,8 @@ class ChannelView(
         objects = self.object.alerts
         if search:
             objects = self.object.alerts.filter(content__icontains=search)
+        else:
+            search = ""
         paginator = Paginator(objects, 15)
         page_obj = paginator.get_page(self.request.GET.get("page", 1))
         context = super(ChannelView, self).get_context_data(**kwargs)

@@ -1,7 +1,7 @@
 {% extends 'management/base.html' %}
 
 {% block precontent %}
-<section class="hero is-light">
+<section class="hero is-link">
     <div class="hero-body">
         <div class="container">
             <div class="level">
@@ -17,25 +17,19 @@
                         </h1>
                     </div>
                 </div>
-                <div class="level-right">
-                    <div class="level-item is-block">
-                        {% block action %}
-                        {% endblock %}
-                    </div>
-                </div>
             </div>
         </div>
     </div>
     <div class="hero-foot">
         <div class="container">
-            <div class="tabs is-underbar is-light">
+            <div class="tabs is-boxed">
                 <ul>
                     <li {% if tab_scope == "overview" %}class="is-active" {% endif %}><a
-                            href={% url 'management:organization' org_id=organization.id %}>Overview</a></li>
+                            href="{% url 'management:organization' org_id=organization.id %}">Overview</a></li>
                     <li {% if tab_scope == "channels" %}class="is-active" {% endif %}><a
                             href="{% url 'management:channel_list' org_id=organization.id %}">Channels</a></li>
                     <li {% if tab_scope == "publish" %}class="is-active" {% endif %}><a
-                        href="{% url 'management:create_alert' org_id=organization.id %}">Alerts</a></li>
+                        href="{% url 'management:create_alert' org_id=organization.id %}">Publish</a></li>
                     <li><a
                         href="{% url 'public:index' %}?org={{organization.id}}">Public View</a></li>
                 </ul>
@@ -43,4 +37,11 @@
         </div>
     </div>
 </section>
+<div class="actions-container">
+    <div class="container">
+        <div class="org-page-action">{% block action %}{% endblock %}</div>
+    </div>
+</div>
+{% endblock %}
+{% block content %}
 {% endblock %}

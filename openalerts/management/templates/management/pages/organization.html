@@ -4,7 +4,8 @@
 {% load static %}
 
 {% block action %}
-<a href="{% url "management:create_alert" org_id=organization.id %}" class="button is-link is-outlined">+ Publish Alert</a>
+<a href="{% url 'management:create_alert' org_id=organization.id %}">Publish New Alert</a>
+<a href="{% url 'management:edit_organization' org_id=organization.id %}">Configure Organization</a>
 {% endblock %}
 
 {% block content %}
@@ -46,7 +47,4 @@
         <p class="has-text-grey is-italic"><small>Due to privacy concerns, data from unsubscribed users is not retained, and unsubscribed users will not affect this chart's totals.</small></p>
     </div>
 </div>
-
-<hr>
-<a href="{% url 'management:edit_organization' org_id=organization.id %}" class="button is-outlined is-small is-link">&#9998; Configure Organization</a>
 {% endblock %} 

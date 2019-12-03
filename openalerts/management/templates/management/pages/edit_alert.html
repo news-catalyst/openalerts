@@ -7,12 +7,6 @@
 {% endblock %}
 
 {% block content %}
-{% if object %}
-<h1 class="is-size-4">Edit Alert</h1>
-{% else %}
-<h1 class="is-size-4">Publish Alert</h1>
-{% endif %}
-<br>
 <div class="columns">
     <div class="column is-4">
         <form method="POST">
@@ -24,7 +18,7 @@
             {{form|bulma}}
             {% csrf_token %}
             <br>
-            <button type="submit" class="button is-link">Save</button>
+            <button type="submit" class="button is-link">Publish</button>
             {% if object %}
             <a href="{% url 'management:delete_alert' org_id=organization.id pk=object.id %}"
                 class="button is-danger is-outlined">Delete</a>

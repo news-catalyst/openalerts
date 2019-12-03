@@ -35,3 +35,41 @@ a.box:hover {
 .is-significant-width {
     min-width: 25vw !important;
 }
+
+.section {
+    padding-top: 2em !important;
+}
+
+.org-page-action:not(:empty) {
+    padding-top: 1.25em;
+    padding-bottom: 1.25em;
+}
+
+.org-page-action a {
+    background-color: #eef3fc;
+    color: #2160c4;
+    cursor: pointer;
+    justify-content: center;
+    padding-bottom: calc(.5em - 1px);
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-right: 0.75em;
+    padding-top: calc(.5em - 1px);
+    text-align: center;
+    white-space: nowrap;
+    border-radius: 5px;
+}
+
+.navbar.is-link {
+    /* background-color: #2160d4 !important; */
+}
+
+.actions-container:not(:empty) {
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.075);
+}
+
+@media screen and (max-width: 759px) {
+    .actions-container:not(:empty) {
+        padding-left: 1.5em;
+    }
+}

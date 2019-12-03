@@ -5,8 +5,7 @@
 {% endblock %}
 
 {% block action %}
-<a href="{% url 'management:create_source' org_id=organization.id channel_id=object.id %}"
-    class="button is-link is-outlined">+ Create Source</a>
+<a href="{% url 'management:create_source' org_id=organization.id channel_id=object.id %}">Create Source</a>
 {% endblock %}
 
 {% block content %}

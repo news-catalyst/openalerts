@@ -3,23 +3,12 @@
 {% load bulma_tags %}
 
 {% block subsection %}
-/ Channels / Edit
+/ Channels / {% if object %}Manage{% else %}Create{% endif %}
 {% endblock %}
 
-{% block action %}
-    {% if object %}
-    <a href="{% url "management:source_list" org_id=organization.id channel_id=object.id %}"
-        class="button is-link is-outlined">&#9998; Manage Sources</a>
-    {% endif %}
-{% endblock %}
+{% block action %}{% if object %}<a href="{% url "management:source_list" org_id=organization.id channel_id=object.id %}">Manage Sources</a>{% endif %}{% endblock %}
 
 {% block content %}
-{% if object %}
-<h1 class="is-size-4">Manage Channel</h1>
-{% else %}
-<h1 class="is-size-4">Create Channel</h1>
-{% endif %}
-<br>
 <div class="columns">
     <div class="column is-4">
         <form method="POST">
