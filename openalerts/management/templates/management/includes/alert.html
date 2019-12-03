@@ -8,12 +8,13 @@
         </a>
     </div>
     <div class="column is-4 has-text-grey">
-        <p>Published: {{alert.published}} ({{alert.published|naturaltime}})</p>
-        <br>
-        <p>Last updated: {{alert.updated}} ({{alert.updated|naturaltime}})</p>
+        <p class="heading is-marginless">Published</p>
+        <p class="has-bottom-margin">{{alert.published}} ({{alert.published|naturaltime}})</p>
+        <p class="heading is-marginless">Last updated</p>
+        <p class="has-bottom-margin">{{alert.updated}} ({{alert.updated|naturaltime}})</p>
         {% if alert.url %}
-        <br>
-        <p>Links to: {{alert.url}}</p>
+        <p class="heading is-marginless">Links to</p>
+        <p class="has-bottom-margin">{{alert.url}}</p>
         {% endif %}
     </div>
     <div class="column is-4">

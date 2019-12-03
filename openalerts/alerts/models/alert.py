@@ -10,7 +10,8 @@ class Alert(models.Model):
         help_text="What channel does the alert belong to?",
     )
     content = models.TextField(
-        help_text="What is the content of the alert? We recommend keeping this under 250 characters."
+        help_text="What is the content of the alert? We recommend keeping this under 250 characters.",
+        db_index=True
     )
     image_url = models.URLField(
         blank=True, editable=False
@@ -18,8 +19,9 @@ class Alert(models.Model):
     url = models.URLField(
         blank=True,
         help_text="Where should subscribers go when they click on the alert? (Usually, this is the link to the associated news story on your website.)",
+        db_index=True
     )
-    published = models.DateTimeField(auto_now_add=True)
+    published = models.DateTimeField(auto_now_add=True, db_index=True)
     updated = models.DateTimeField(auto_now=True)
     source = models.ForeignKey(Source, on_delete=models.SET_NULL, null=True)
     source_identifier = models.TextField(null=True) # Because null != null, this does not violate unique constraint

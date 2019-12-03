@@ -6,7 +6,8 @@ from django.urls import reverse_lazy
 from django.core.paginator import Paginator
 from management.mixins import SessionAuthenticationRequiredMixin, SessionOrgContextMixin, OrgContextMixin
 from management.models import Organization
-from alerts.models import Channel
+from alerts.models import Channel, Alert
+from django.utils.http import urlencode
 
 class ChannelListView(
     SessionAuthenticationRequiredMixin, SessionOrgContextMixin, DetailView
@@ -55,8 +56,12 @@ class ChannelView(
     model = Channel
 
     def get_context_data(self, **kwargs):
-        paginator = Paginator(self.object.alerts, 30)
-        page_obj = paginator.get_page(self.request.GET.get("page", 0))
+        search = self.request.GET.get("search", None)
+        objects = self.object.alerts
+        if search:
+            objects = self.object.alerts.filter(content__icontains=search)
+        paginator = Paginator(objects, 15)
+        page_obj = paginator.get_page(self.request.GET.get("page", 1))
         context = super(ChannelView, self).get_context_data(**kwargs)
-        context.update(dict(page_obj=page_obj, paginator=paginator))
+        context.update(dict(page_obj=page_obj, paginator=paginator, total_alerts=objects.count(), url_parameters=urlencode([("search", search)])))
         return context

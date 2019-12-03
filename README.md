@@ -13,10 +13,10 @@
 - [x] Add RSS channel view
 - [x] Add a way for orgs to link channels to a Twitter account
 - [x] Add alert pagination on both front- and back-end
-- [] Add alert searching on back-end
+- [x] Add alert searching on back-end
 - [x] Add subscriber system
 - [x] Add email distribution
-- [] Add SMS distribution
+- [] Add SMS distribution (WONTFIX)
 - [x] Add webpush distribution
 - [x] Add click tracking
 - [] Add total view metrics estimates

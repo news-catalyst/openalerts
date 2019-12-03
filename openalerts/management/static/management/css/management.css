@@ -27,3 +27,11 @@
 a.box:hover {
     box-shadow: 0 0 1px 1px hsl(217, 71%, 53%), 2px 4px 5px 1px rgba(10,10,10,.05);
 }
+
+.has-bottom-margin {
+    margin-bottom: 10px;
+}
+
+.is-significant-width {
+    min-width: 25vw !important;
+}

@@ -1,6 +1,7 @@
 {% extends 'management/organization_base.html' %}
 
 {% load paginator %}
+{% load humanize %}
 
 {% block subsection %}
 / {{object.name}}
@@ -14,13 +15,27 @@
 {% endblock %}
 
 {% block content %}
+<div class="level">
+    <div class="level-left">
+        <div class="level-item">
+            <form method="GET" class="is-significant-width">
+                <input type="search" class="input is-medium" name="search" value="{{request.GET.search}}"
+                    placeholder="Search for an alert...">
+            </form>
+        </div>
+        <div class="level-item">
+            <p class="has-text-grey">Showing {{total_alerts|intcomma}} alert{% if total_alerts != 1 %}s{% endif %}.</p>
+        </div>
+    </div>
+</div>
+<hr>
 {% for alert in page_obj %}
 {% include 'management/includes/alert.html' %}
 <hr>
 {% empty %}
-<div class="notification">No alerts have been created. <a
+<div class="notification">No alerts to show. <a
         href="{% url 'management:create_alert' org_id=organization.id %}?channel={{object.id}}">Click here</a> to create
-    one.</div>
+    a new alert.</div>
 {% endfor %}
-{% pagination page_obj url_parameters="" %}
+{% pagination page_obj url_parameters=url_parameters %}
 {% endblock %}
