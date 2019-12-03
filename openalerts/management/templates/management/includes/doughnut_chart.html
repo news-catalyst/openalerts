@@ -1,11 +1,11 @@
-<canvas id="{{name}}" width="400" height="400"></canvas>
+<canvas id="{{name}}" width="400" height="250"></canvas>
 <script>
     new Chart("{{name}}", {
         type: 'doughnut',
         data: {
             datasets: [{
                 data: {{values|safe}},
-                backgroundColor: palette("tol-rainbow", {{values|length}}).map(function (hex) {
+                backgroundColor: palette("tol-dv", {{count}}).map(function (hex) {
                     return "#" + hex
                 })
             }],
@@ -13,6 +13,10 @@
             // These labels appear in the legend and in the tooltips when hovering different arcs
             labels: {{keys|safe}},
         },
-        options: {}
+        options: {
+            legend: {
+                position: "bottom"
+            }
+        }
     });
 </script>

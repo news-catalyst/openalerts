@@ -38,10 +38,15 @@
 <div class="columns">
     <div class="column is-4">
         <h4 class="is-size-6 title has-text-centered">Subscriber Breakdown</h4>
-        {% include 'management/includes/doughnut_chart.html' with name="subscribers" keys=subscribers.keys values=subscribers.values %}
+        {% include 'management/includes/doughnut_chart.html' with name="subscribers" keys=subscribers.keys values=subscribers.values count=subscribers.count %}
+    </div>
+    <div class="column is-8" style="height: 400px">
+        <h4 class="is-size-6 title has-text-centered">Total Subscribers</h4>
+        {% include 'management/includes/timeseries_chart.html' with name="subscribers_timeseries" label=subscribers_timeseries.label values=subscribers_timeseries.values %}
+        <p class="has-text-grey is-italic"><small>Due to privacy concerns, data from unsubscribed users is not retained, and unsubscribed users will not affect this chart's totals.</small></p>
     </div>
 </div>
 
 <hr>
 <a href="{% url 'management:edit_organization' org_id=organization.id %}" class="button is-outlined is-small is-link">&#9998; Configure Organization</a>
-{% endblock %}
+{% endblock %} 

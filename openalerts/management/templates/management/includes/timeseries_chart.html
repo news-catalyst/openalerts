@@ -1,0 +1,41 @@
+<canvas id="{{name}}" width="800" height="250"></canvas>
+<script>
+    new Chart("{{name}}", {
+        type: 'line',
+        data: {
+            datasets: [{
+                data: {{values|safe}},
+                backgroundColor: "#2975DD",
+                borderColor: "#2975DD",
+                pointRadius: 2,
+                showLine: true,
+                fill: false,
+                label: "{{label}}"
+            }],
+
+            // These labels appear in the legend and in the tooltips when hovering different arcs
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            scales: {
+                xAxes: [{
+                    type: 'time',
+                    beginAtZero: false,
+                    gridLines: {
+                        display: false
+                    },
+                    ticks: {
+                        maxTicksLimit: 12
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        callback: function(value) {if (value % 1 === 0) {return value;}},
+                    }
+                }]
+            }
+        }
+    });
+</script>
