@@ -51,6 +51,7 @@ class EmailSubscription(models.Model):
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
     channels = models.ManyToManyField(Channel)
     verified = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=True)
 
     unique_together = ["email", "organization"]
 
@@ -129,6 +130,7 @@ class EmailSubscriptionGroup(SubscriptionGroup):
 class WebpushSubscription(models.Model):
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
     subscription = models.ForeignKey(PushInformation, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
 
 class WebpushSubscriptionGroup(SubscriptionGroup):
     def __init__(self, group):

@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404, reverse
 from django import forms
 from management.mixins import SessionAuthenticationRequiredMixin, SessionOrgContextMixin, OrgContextMixin
 from management.models import Organization
+from subscriptions.models import WebpushSubscription, EmailSubscription
 
 
 class EditOrganizationView(
@@ -32,3 +33,12 @@ class OrganizationView(
     template_name = "management/pages/organization.html"
     model = Organization
     pk_url_kwarg = "org_id"
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        data["subscribers"] = {
+            "keys": str(["Email", "Web Alerts"]),
+            "values": str([EmailSubscription.objects.filter(organization=self.object).count(),
+                           WebpushSubscription.objects.filter(organization=self.object).count()])
+        }
+        return data

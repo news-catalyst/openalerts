@@ -1,12 +1,15 @@
 {% extends 'management/organization_base.html' %}
 
 {% load humanize %}
+{% load static %}
 
 {% block action %}
 <a href="{% url "management:create_alert" org_id=organization.id %}" class="button is-link is-outlined">+ Publish Alert</a>
 {% endblock %}
 
 {% block content %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.bundle.min.js" integrity="sha256-TQq84xX6vkwR0Qs1qH5ADkP+MvH0W+9E7TdHJsoIQiM=" crossorigin="anonymous"></script>
+<script src="{% static 'management/js/palette.js' %}"></script>
 <div class="columns">
     <div class="column is-4">
         <div class="box">
@@ -30,6 +33,13 @@
 
 <div class="notification">
     Embeds, instructions, the latest alerts, and graphs will eventually be shown here.
+</div>
+
+<div class="columns">
+    <div class="column is-4">
+        <h4 class="is-size-6 title has-text-centered">Subscriber Breakdown</h4>
+        {% include 'management/includes/doughnut_chart.html' with name="subscribers" keys=subscribers.keys values=subscribers.values %}
+    </div>
 </div>
 
 <hr>
