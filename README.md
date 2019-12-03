@@ -8,7 +8,7 @@
 - [x] Add more granular permission checking
 - [x] Add minimalist, skinnable front-end
 - [x] Add JSON endpoint for each channel (or collection of channels) (replaced by RSS)
-- [] Allow orgs to add their own analytics/scripts
+- [x] Allow orgs to add their own analytics/scripts
 - [x] Improve organization selection view
 - [x] Add RSS channel view
 - [x] Add a way for orgs to link channels to a Twitter account

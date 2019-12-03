@@ -11,7 +11,7 @@ class EditOrganizationView(
 ):
     template_name = "management/pages/edit_organization.html"
     model = Organization
-    fields = ["name", "website", "description", "logo_url", "primary_color"]
+    fields = ["name", "website", "description", "logo_url", "primary_color", "head_inject"]
     pk_url_kwarg = "org_id"
 
     def get_form(self, *args, **kwargs):

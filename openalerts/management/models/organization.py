@@ -10,6 +10,7 @@ class Organization(models.Model):
     primary_color = models.CharField(max_length=7, default="#444444", help_text="Your news organization's primary brand color. Text will be shown in this color, so it should be relatively dark.")
     logo_url = models.URLField(blank=True, default='', help_text="The URL of your news organization's logo (for use on public facing pages). This image will be shown on a white background.")
     custom_hostname = models.TextField(null=True, blank=True, unique=True, help_text="Your organization's custom hostname (domain) for OpenAlerts. If you don't know what this means, just ignore this setting.")
+    head_inject = models.TextField(blank=True, default="", help_text="Custom data to insert inside the HTML `head` on public-facing pages.")
 
     @staticmethod
     def for_presspass_org(org):
