@@ -13,7 +13,7 @@ class EmailSignUpView(OrganizationMixin, FormView):
     form_class = EmailSignupForm
 
     def get_success_url(self):
-        return reverse("public:email_signup") + "?success=True"
+        return reverse("public:email_signup") + f"?org={self.get_context_data()['organization'].id}&success=True"
 
     def form_valid(self, form):
         email = form.cleaned_data["email"]

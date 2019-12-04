@@ -49,13 +49,41 @@
 <br>
 <div class="columns">
     <div class="column is-3">
-        <h6 class="title is-size-6">Sign-Up Buttons</h6>
+        <h6 class="title is-size-6">Sign-Up Button</h6>
         <p>Further instructions on how to integrate the embed, as well as potential settings, will be shown here.</p>
     </div>
     <div class="column is-9">      
         <div class="notification">   
             <samp>
-    &lt;iframe src=&quot;{{protocol_and_host}}{% url 'public:embed_index' %}?org={{organization.id}}&quot; style=&quot;border:0px #ffffff none;&quot; name=&quot;openalerts-buttons&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot; marginheight=&quot;0px&quot; marginwidth=&quot;0px&quot; height=&quot;200px&quot; width=&quot;600px&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;{{protocol_and_host}}{% url 'public:embed_index' %}?org={{organization.id}}&quot; style=&quot;border:0px #ffffff none;&quot; name=&quot;openalerts-buttons&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot; marginheight=&quot;0px&quot; marginwidth=&quot;0px&quot; onload=&quot;this.height=this.contentWindow.document.body.scrollHeight;&quot; width=&quot;100%&quot; allowfullscreen&gt;&lt;/iframe&gt;
+            </samp>
+        </div>
+    </div>
+</div>
+<br>
+<div class="columns">
+    <div class="column is-3">
+        <h6 class="title is-size-6">Email Sign-Up</h6>
+        <p>Further instructions on how to integrate the embed, as well as potential settings, will be shown here.</p>
+    </div>
+    <div class="column is-9">      
+        <div class="notification">   
+            <samp>
+&lt;iframe src=&quot;{{protocol_and_host}}{% url 'public:embed_email' %}?org={{organization.id}}&quot; style=&quot;border:0px #ffffff none;&quot; name=&quot;openalerts-buttons&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot; marginheight=&quot;0px&quot; marginwidth=&quot;0px&quot; onload=&quot;this.height=this.contentWindow.document.body.scrollHeight;&quot; width=&quot;100%&quot; allowfullscreen&gt;&lt;/iframe&gt;
+            </samp>
+        </div>
+    </div>
+</div>
+<br>
+<div class="columns">
+    <div class="column is-3">
+        <h6 class="title is-size-6">Latest Alerts</h6>
+        <p>Further instructions on how to integrate the embed, as well as potential settings, will be shown here.</p>
+    </div>
+    <div class="column is-9">      
+        <div class="notification">   
+            <samp>
+&lt;iframe src=&quot;{{protocol_and_host}}{% url 'public:embed_latest' %}?org={{organization.id}}&quot; style=&quot;border:0px #ffffff none;&quot; name=&quot;openalerts-buttons&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot; marginheight=&quot;0px&quot; marginwidth=&quot;0px&quot; onload=&quot;this.height=this.contentWindow.document.body.scrollHeight;&quot; width=&quot;100%&quot; allowfullscreen&gt;&lt;/iframe&gt;
             </samp>
         </div>
     </div>

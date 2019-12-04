@@ -13,7 +13,7 @@ class OrganizationMixin(ContextMixin):
             context["organization"] = get_object_or_404(Organization, id=self.request.GET.get("org"))
             self.request.session["public_org"] = context["organization"].id
         else:
-            context["organzation"] = get_object_or_404(Organization, custom_hostname=self.request.get_host())
+            context["organization"] = get_object_or_404(Organization, custom_hostname=self.request.get_host())
         
         context["webpush"] = {
             "group": context["organization"].id

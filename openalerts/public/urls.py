@@ -8,7 +8,9 @@ from .views import (
     IndexView,
     UrlRedirectView,
     UnknownUrlView,
-    IndexEmbedView
+    IndexEmbedView,
+    EmailEmbedView,
+    LatestEmbedView
 )
 
 app_name = "public"
@@ -16,6 +18,9 @@ app_name = "public"
 urlpatterns = [
     # Embeds
     path("embed/", IndexEmbedView.as_view(), name="embed_index"),
+    path("embed/email/", EmailEmbedView.as_view(), name="embed_email"),
+    path("embed/latest/", LatestEmbedView.as_view(), name="embed_latest"),
+
     # On-site
     path("email/signup/", EmailSignUpView.as_view(extra_context={"title": "Email Sign Up"}), name="email_signup"),
     path("email/verify/<str:token>/", EmailVerifyView.as_view(extra_context={"title": "Email Verification"}), name="email_verify"),

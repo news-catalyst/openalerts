@@ -1,0 +1,7 @@
+{% extends 'public/embeds/base.html' %}
+
+{% block content %}
+{% for alert in alerts %}
+{% include 'public/includes/alert.html' %}
+{% endfor %}
+{% endblock %}

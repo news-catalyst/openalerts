@@ -1,0 +1,23 @@
+{% load bulma_tags %}
+
+{% if request.GET.success %}
+<div class="notification is-success">
+    <h4 class="is-size-4">Check your email!</h4>
+    <br>
+    <p>Before we can send you alerts, you need to verify your email. Check your inbox for further instructions.</p>
+</div>
+{% else %}
+<form method="POST" target="_self">
+    {% csrf_token %}
+    <div class="level">
+        <div class="level-item">
+            <div style="width: 100%; margin-right: 12px;">
+                {{form|bulma}}
+            </div>
+        </div>
+        <div class="level-item is-narrow">
+            <button type="submit" class="button is-primary">Sign Up</button>
+        </div>
+    </div>
+</form>
+{% endif %}

@@ -1,0 +1,6 @@
+{% load humanize %}
+
+<a href="{{alert.url}}" class="box">
+    <p class="heading">{{alert.channel.name}} / {{alert.updated|naturaltime}}</p>
+    <p>{{alert.content}}</p>
+</a>

@@ -15,8 +15,9 @@
     <meta name="service-worker-js" content="/webpush/service-worker.js">
     <meta name="django-webpush-vapid-key" content="BK2-BnTAEc78hOjljXR4_Rb7mvbUdriF65twrZE_74RySWccnmDOfQP837wEfYyoGaWAWTzX1-7pkkvr0HUEBwY">
     <style>
-        .title, .is-primary-color {
-            color: {{organization.primary_color}} !important;
+        body {
+            background-color: #eeeeee;
+            min-height: 100vh;
         }
 
         .container {
@@ -27,21 +28,16 @@
             padding: 20px;
         }
 
-        .logo {
-            max-width: 200px;
-        }
-
-        body {
-            background-color: #eeeeee;
-            min-height: 100vh;
-        }
-
         .button.is-primary {
-            background-color: {{organization.primary_color}};
+            background-color: {{organization.primary_color}} !important;
         }
 
         .button.is-primary:hover {
-            background-color: {{organization.primary_color}};
+            background-color: {{organization.primary_color}} !important;
+        }
+
+        .title, .is-primary-color {
+            color: {{organization.primary_color}} !important;
         }
     </style>
     {{organization.head_inject|safe}}

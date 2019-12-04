@@ -17,18 +17,22 @@
     <base target="_blank">
     <style>
         .button.is-primary {
-            background-color: {{organization.primary_color}};
+            background-color: {{organization.primary_color}} !important;
         }
 
         .button.is-primary:hover {
-            background-color: {{organization.primary_color}};
+            background-color: {{organization.primary_color}} !important;
+        }
+
+        .title, .is-primary-color {
+            color: {{organization.primary_color}} !important;
         }
     </style>
     {{organization.head_inject|safe}}
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" style="padding: 5px;">
         <div id="webpush-message" hidden class="notification"></div>
         {% block content %}
         {% endblock %}

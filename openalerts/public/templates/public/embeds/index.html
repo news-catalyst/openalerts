@@ -1,5 +1,5 @@
 {% extends 'public/embeds/base.html' %}
 
 {% block content %}
-{% include 'public/includes/buttons.html' %}
+<a href="{% url 'public:index' %}?org={{organization.id}}" class="button is-primary is-block">Sign Up for Alerts</a>
 {% endblock %}

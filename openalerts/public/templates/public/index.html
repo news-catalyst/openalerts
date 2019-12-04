@@ -11,10 +11,7 @@
     <div class="column">
         <h5 class="title is-size-5">Latest Alerts</h5>
         {% for alert in organization.alerts|slice:":3" %}
-        <a href="{{alert.url}}" class="box">
-            <p class="heading">{{alert.channel.name}} / {{alert.updated|naturaltime}}</p>
-            <p>{{alert.content}}</p>
-        </a>
+        {% include 'public/includes/alert.html' %}
         {% endfor %}
     </div>
     <div class="column is-4">

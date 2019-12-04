@@ -26,3 +26,11 @@ a.box:hover {
 .is-fullwidth {
     width: 100%;
 }
+
+label:empty {
+    margin-bottom: 0 !important;
+}
+
+.logo {
+    max-width: 200px;
+}
