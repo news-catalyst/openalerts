@@ -23,3 +23,4 @@
 - [] Finalize management design
 - [] Finalize front-end design
 - [] Autodetect when push notifications are enabled and show user different content
+- [] Add full embed support

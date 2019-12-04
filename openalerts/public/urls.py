@@ -7,12 +7,16 @@ from .views import (
     EmailDeleteConfirmView,
     IndexView,
     UrlRedirectView,
-    UnknownUrlView
+    UnknownUrlView,
+    IndexEmbedView
 )
 
 app_name = "public"
 
 urlpatterns = [
+    # Embeds
+    path("embed/", IndexEmbedView.as_view(), name="embed_index"),
+    # On-site
     path("email/signup/", EmailSignUpView.as_view(extra_context={"title": "Email Sign Up"}), name="email_signup"),
     path("email/verify/<str:token>/", EmailVerifyView.as_view(extra_context={"title": "Email Verification"}), name="email_verify"),
     path("email/settings/<str:token>/", EmailSettingsView.as_view(extra_context={"title": "Email Settings"}), name="email_settings"),

@@ -2,6 +2,7 @@ from django.views.generic.edit import UpdateView
 from django.views.generic.detail import DetailView
 from django.shortcuts import get_object_or_404, reverse
 from django.utils import timezone
+from django.conf import settings
 from datetime import timedelta, datetime
 from django import forms
 from management.mixins import SessionAuthenticationRequiredMixin, SessionOrgContextMixin, OrgContextMixin
@@ -61,6 +62,6 @@ class OrganizationView(
             } for time in times])
         }
 
-        print(data["subscribers_timeseries"])
+        data["protocol_and_host"] = settings.PROTOCOL_AND_HOST
 
         return data

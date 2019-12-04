@@ -1,0 +1,37 @@
+{% load static %}
+{% load webpush_notifications %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{title|default:"Alerts"}} | {{organization.name}} (Embed)</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
+        integrity="sha256-D9M5yrVDqFlla7nlELDaYZIpXfFWDytQtiV+TaH6F1I=" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'public/css/public.css' %}">
+    <script id="webpush-js" type="text/javascript" src="{% static 'public/js/push.js' %}"></script>
+    <meta name="service-worker-js" content="/webpush/service-worker.js">
+    <meta name="django-webpush-vapid-key" content="BK2-BnTAEc78hOjljXR4_Rb7mvbUdriF65twrZE_74RySWccnmDOfQP837wEfYyoGaWAWTzX1-7pkkvr0HUEBwY">
+    <base target="_blank">
+    <style>
+        .button.is-primary {
+            background-color: {{organization.primary_color}};
+        }
+
+        .button.is-primary:hover {
+            background-color: {{organization.primary_color}};
+        }
+    </style>
+    {{organization.head_inject|safe}}
+</head>
+
+<body>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+
+</html>

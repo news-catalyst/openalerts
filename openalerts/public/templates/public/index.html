@@ -19,32 +19,7 @@
     </div>
     <div class="column is-4">
         <h5 class="title is-size-5">Get Alerts</h5>
-        <a href="{% url 'public:email_signup' %}" class="button is-primary is-block">Via Email</a>
-        <br>
-        <button id="webpush-subscribe-button" data-group="1" data-url="/webpush/save_information" class="button is-primary is-fullwidth">
-            Via Notifications
-        </button>
-        <br>
-        <div class="dropdown is-hoverable is-fullwidth">
-            <div class="dropdown-trigger is-fullwidth">
-                <button class="button is-primary is-fullwidth" aria-haspopup="true" aria-controls="rss-menu">
-                    <span>Via RSS</span>
-                </button>
-            </div>
-            <div class="dropdown-menu" id="rss-menu" role="menu">
-                <div class="dropdown-content">
-                    <a href="{% url 'rss:organization_feed' organization.id %}" class="dropdown-item">
-                        All Alerts
-                    </a>
-                    <hr class="dropdown-divider">
-                    {% for channel in organization.channel_set.all %}
-                    <a class="dropdown-item" href="{% url 'rss:channel_feed' organization.id channel.slug %}">
-                        {{channel.name}}
-                    </a>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
+        {% include 'public/includes/buttons.html' with with_rss=True %}
     </div>
 </div>
 {% endblock %}
