@@ -8,7 +8,7 @@ black = "*"
 pylint = "*"
 
 [packages]
-django = "==2.2"
+django = ">=3.0"
 social-auth-app-django = "*"
 social-auth-core = {extras = ["openidconnect"],version = "*"}
 social-auth-presspass = "*"
