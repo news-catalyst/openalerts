@@ -169,4 +169,8 @@ TWITTER_CONSUMER_SECRET = os.getenv("TWITTER_CONSUMER_SECRET", None)
 TWITTER_ACCESS_TOKEN = os.getenv("TWITTER_ACCESS_TOKEN", None)
 TWITTER_ACCESS_TOKEN_SECRET = os.getenv("TWITTER_ACCESS_TOKEN_SECRET", None)
 
+<<<<<<< Updated upstream
 CSRF_COOKIE_SAMESITE = None
+=======
+print(WEBPUSH_SETTINGS)
+>>>>>>> Stashed changes
