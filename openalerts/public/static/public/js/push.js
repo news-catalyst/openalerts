@@ -79,7 +79,7 @@ function subscribe(reg) {
     .catch(
       function(error) {
         console.log('Subscription error: ', error);
-        messageBox.textContent = 'Unable to subscribe you to push notifications';
+        messageBox.textContent = 'Unable to subscribe you to push notifications.';
         subBtn.textContent = enableText;
         subBtn.disabled = false;
         messageBox.style.display = 'block';

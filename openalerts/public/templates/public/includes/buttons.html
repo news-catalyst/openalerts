@@ -3,7 +3,7 @@
         <a href="{% url 'public:email_signup' %}" class="button is-primary is-block">Via Email</a>
     </div>
     <div class="column">
-        <button id="webpush-subscribe-button" data-group="1" data-url="/webpush/save_information" class="button is-primary is-fullwidth">
+        <button id="webpush-subscribe-button" data-group="{{organization.id}}" data-url="/webpush/save_information" class="button is-primary is-fullwidth">
             Via Notifications
         </button>
     </div>
