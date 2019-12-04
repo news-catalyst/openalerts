@@ -1,4 +1,5 @@
 from django.views.generic.base import ContextMixin
+from django.conf import settings
 from management.models import Organization
 from django.shortcuts import get_object_or_404
 
@@ -16,7 +17,8 @@ class OrganizationMixin(ContextMixin):
             context["organization"] = get_object_or_404(Organization, custom_hostname=self.request.get_host())
         
         context["webpush"] = {
-            "group": context["organization"].id
+            "group": context["organization"].id,
+            "public_key": settings.WEBPUSH_SETTINGS["VAPID_PUBLIC_KEY"]
         }
 
         return context

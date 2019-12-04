@@ -1,0 +1,41 @@
+{% extends 'management/organization_base.html' %}
+
+{% block content %}
+<div class="limited-width">
+<h4 class="title is-size-4">Embeds and Integrations</h4>
+<p class="subtitle">Include OpenAlerts on your own site</p>
+<p>We recommend using <a href="http://blog.apps.npr.org/pym.js/">Pym.js</a> to load our embeds on your website. The following reusable code snippets have been customized for your organization, and require <strong>pym-loader.js</strong> to be present on the page. To install <strong>pym-loader.js</strong>, you can use the following CDN import:</p>
+<br>
+<div class="notification">
+    <small>
+        <samp>
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/pym.js@1.3.2/dist/pym-loader.v1.min.js&quot; integrity=&quot;sha256-ymoVGOsQ+8XK3XbddMhMVSKz4y4RWVWd8G+PWJ+MZYk=&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+        </samp>
+    </small>
+</div>
+<p>Once you have <strong>pym-loader.js</strong> installed, you can use any of the following embeds.</p>
+<hr>
+<h6 class="title is-size-6">Sign-Up Button</h6>
+    <div class="notification">   
+        <samp>
+&lt;p data-pym-src=&quot;{{protocol_and_host}}{% url 'public:embed_index' %}?org={{organization.id}}&quot; id=&quot;openalerts-signup&quot;&gt;Loading...&lt;/p&gt;
+        </samp>
+    </div>
+<br>
+
+<h6 class="title is-size-6">Email Sign-Up</h6>
+    <div class="notification">   
+        <samp>
+&lt;p data-pym-src=&quot;{{protocol_and_host}}{% url 'public:embed_email' %}?org={{organization.id}}&quot; id=&quot;openalerts-signup&quot;&gt;Loading...&lt;/p&gt;
+        </samp>
+    </div>
+<br>
+
+<h6 class="title is-size-6">Latest Alerts</h6>
+    <div class="notification">   
+        <samp>
+&lt;p data-pym-src=&quot;{{protocol_and_host}}{% url 'public:embed_latest' %}?org={{organization.id}}&quot; id=&quot;openalerts-signup&quot;&gt;Loading...&lt;/p&gt;
+        </samp>
+    </div>
+</div>
+{% endblock %}

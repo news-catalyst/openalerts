@@ -15,7 +15,8 @@ from .views import (
     DeleteChannelView,
     SourceListView,
     DeleteSourceView,
-    CreateSourceView
+    CreateSourceView,
+    OrganizationIntegrationsView
 )
 
 app_name = "management"
@@ -26,6 +27,11 @@ urlpatterns = [
         "organization/<int:org_id>/",
         OrganizationView.as_view(extra_context={"tab_scope": "overview"}),
         name="organization",
+    ),
+    path(
+        "organization/<int:org_id>/integrations/",
+        OrganizationIntegrationsView.as_view(extra_context={"tab_scope": "overview"}),
+        name="integrations",
     ),
     path(
         "organization/<int:org_id>/edit/",

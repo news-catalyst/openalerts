@@ -11,23 +11,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
         integrity="sha256-D9M5yrVDqFlla7nlELDaYZIpXfFWDytQtiV+TaH6F1I=" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'public/css/public.css' %}">
-    <script id="webpush-js" type="text/javascript" src="{% static 'webpush/webpush.js' %}"></script>
-    <meta name="service-worker-js" content="/webpush/service-worker.js">
-    <meta name="django-webpush-vapid-key" content="BK2-BnTAEc78hOjljXR4_Rb7mvbUdriF65twrZE_74RySWccnmDOfQP837wEfYyoGaWAWTzX1-7pkkvr0HUEBwY">
+    <script src="https://cdn.jsdelivr.net/npm/pym.js@1.3.2/dist/pym.v1.min.js" integrity="sha256-t/c2FEpMPIah5iD5TZGzwO7crawziIID5VTcLnw8+mY=" crossorigin="anonymous"></script>
     <base target="_blank">
-    <style>
-        .button.is-primary {
-            background-color: {{organization.primary_color}} !important;
-        }
-
-        .button.is-primary:hover {
-            background-color: {{organization.primary_color}} !important;
-        }
-
-        .title, .is-primary-color {
-            color: {{organization.primary_color}} !important;
-        }
-    </style>
+    {% include 'public/css/org-css.html' %}
     {{organization.head_inject|safe}}
 </head>
 
@@ -37,6 +23,9 @@
         {% block content %}
         {% endblock %}
     </div>
+    <script>
+        var pymChild = new pym.Child();
+    </script>
 </body>
 
 </html>

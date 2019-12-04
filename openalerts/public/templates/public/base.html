@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{% static 'public/css/public.css' %}">
     <script id="webpush-js" type="text/javascript" src="{% static 'webpush/webpush.js' %}"></script>
     <meta name="service-worker-js" content="/webpush/service-worker.js">
-    <meta name="django-webpush-vapid-key" content="BK2-BnTAEc78hOjljXR4_Rb7mvbUdriF65twrZE_74RySWccnmDOfQP837wEfYyoGaWAWTzX1-7pkkvr0HUEBwY">
+    <meta name="django-webpush-vapid-key" content="{{webpush.public_key}}">
     <style>
         body {
             background-color: #eeeeee;

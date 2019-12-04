@@ -8,6 +8,7 @@ class EmbedMixin:
     def dispatch(self, request, *args, **kwargs):
         response = super(EmbedMixin, self).dispatch(request, *args, **kwargs)
         response["X-Frame-Options"] = None
+        response["Access-Control-Allow-Origin"] = "*"
         return response
 
 class IndexEmbedView(OrganizationMixin, EmbedMixin, TemplateView):

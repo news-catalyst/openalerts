@@ -73,3 +73,11 @@ a.box:hover {
         padding-left: 1.5em;
     }
 }
+
+.always-white {
+    color: white !important;
+}
+
+.limited-width {
+    max-width: 50em;
+}

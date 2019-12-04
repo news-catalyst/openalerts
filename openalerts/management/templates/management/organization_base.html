@@ -9,7 +9,7 @@
                     <div class="level-item is-block">
                         <p class="heading">Managing</p>
                         <h1 class="title is-capitalized is-size-3">
-                            {{organization.name}}
+                            <a href="{% url 'management:organization' org_id=organization.id %}" class="always-white">{{organization.name}}</a>
                             <span class="has-text-weight-light">
                                 {% block subsection %}
                                 {% endblock %}

@@ -65,3 +65,8 @@ class OrganizationView(
         data["protocol_and_host"] = settings.PROTOCOL_AND_HOST
 
         return data
+
+class OrganizationIntegrationsView(SessionAuthenticationRequiredMixin, SessionOrgContextMixin, DetailView):
+    template_name = "management/pages/integrations.html"
+    model = Organization
+    pk_url_kwarg = "org_id"
