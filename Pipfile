@@ -8,13 +8,13 @@ black = "*"
 pylint = "*"
 
 [packages]
-django = "==3"
+django = "==2.2"
 social-auth-app-django = "*"
 social-auth-core = {extras = ["openidconnect"],version = "*"}
 social-auth-presspass = "*"
 django-bulma = "*"
-django-webpush = "*"
 tweepy = "*"
+django-webpush = {editable = true,git = "https://github.com/milesmcc/django-webpush.git",ref = "635220d"}
 
 [requires]
 python_version = "3.6"

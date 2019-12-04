@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "086b36de7185540d9f69526ac5d0e94748b2230ecf92ecf141289dd0839e94f3"
+            "sha256": "9e8ee737a14582dc7b43dceb71046ee8591bfeb09868722ca7c9e5dba5b403b1"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,13 +16,6 @@
         ]
     },
     "default": {
-        "asgiref": {
-            "hashes": [
-                "sha256:7e06d934a7718bf3975acbf87780ba678957b87c7adc056f13b6215d610695a0",
-                "sha256:ea448f92fc35a0ef4b1508f53a04c4670255a3f33d22a81c8fc9c872036adbe5"
-            ],
-            "version": "==3.2.3"
-        },
         "certifi": {
             "hashes": [
                 "sha256:017c25db2a153ce562900032d5bc68e9f191e44e9a0f762f373977de9df1fbb3",
@@ -111,11 +104,11 @@
         },
         "django": {
             "hashes": [
-                "sha256:6f857bd4e574442ba35a7172f1397b303167dae964cf18e53db5e85fe248d000",
-                "sha256:d98c9b6e5eed147bc51f47c014ff6826bd1ab50b166956776ee13db5a58804ae"
+                "sha256:7c3543e4fb070d14e10926189a7fcf42ba919263b7473dceaefce34d54e8a119",
+                "sha256:a2814bffd1f007805b19194eb0b9a331933b82bd5da1c3ba3d7b7ba16e06dc4b"
             ],
             "index": "pypi",
-            "version": "==3"
+            "version": "==2.2"
         },
         "django-bulma": {
             "hashes": [
@@ -126,13 +119,9 @@
             "version": "==0.6.0"
         },
         "django-webpush": {
-            "hashes": [
-                "sha256:64dd43f3e18bd0facc312e8dde91eaae8a6b599830c2a56b37c153b2ded8fae6",
-                "sha256:766e9efe0fd39846287d665b6dcda6ca7c10994b568ba2e0c73ade53a81021f6",
-                "sha256:a38179298719fefdb1c0c02988609c003133faa3977013883fdc25a531fc9586"
-            ],
-            "index": "pypi",
-            "version": "==0.3.1"
+            "editable": true,
+            "git": "https://github.com/milesmcc/django-webpush.git",
+            "ref": "635220dccf0ceb8516b9102b7f9c6547fe36eb62"
         },
         "ecdsa": {
             "hashes": [
