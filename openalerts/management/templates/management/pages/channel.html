@@ -8,25 +8,17 @@
 {% endblock %}
 
 {% block action %}
+<form method="GET" class="is-inline is-limited-width">
+    <input type="search" class="input" name="search" value="{{request.GET.search}}"
+        placeholder="Search for an alert...">
+</form>
 <a href="{% url "management:edit_channel" org_id=organization.id pk=object.id %}">Manage Channel</a>
 <a href="{% url "management:create_alert" org_id=organization.id%}?channel={{object.id}}">Publish Alert</a>
 {% endblock %}
 
 {% block content %}
-<div class="level">
-    <div class="level-left">
-        <div class="level-item">
-            <form method="GET" class="is-significant-width">
-                <input type="search" class="input is-medium" name="search" value="{{request.GET.search}}"
-                    placeholder="Search for an alert...">
-            </form>
-        </div>
-        <div class="level-item">
-            <p class="has-text-grey">Showing {{total_alerts|intcomma}} alert{% if total_alerts != 1 %}s{% endif %}.</p>
-        </div>
-    </div>
-</div>
-<hr>
+<p class="has-text-grey">Showing {{total_alerts|intcomma}} alert{% if total_alerts != 1 %}s{% endif %}.</p>
+<br>
 {% for alert in page_obj %}
 {% include 'management/includes/alert.html' %}
 <hr>
