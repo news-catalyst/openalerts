@@ -60,8 +60,12 @@ a.box:hover {
     border-radius: 5px;
 }
 
+.is-org-hero .hero-body {
+    padding: 2rem 1.5rem;
+}
+
 .navbar.is-link {
-    /* background-color: #2160d4 !important; */
+    background-color: #2160d4 !important;
 }
 
 .actions-container:not(:empty) {
