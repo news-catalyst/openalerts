@@ -1,5 +1,5 @@
 {{alert.content}}
 
-For more information, go to the following URL: {{link_prefix}}{{alert.get_public_url}}
+For more information, go to the following URL: {{link_prefix}}{{alert_url}}
 
 {% include 'subscriptions/email/footer.txt' %}

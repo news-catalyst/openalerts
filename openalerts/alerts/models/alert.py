@@ -29,7 +29,7 @@ class Alert(models.Model):
     class Meta:
         unique_together = ('source', 'source_identifier')
 
-    def get_public_url(self):
+    def get_public_url(self, source):
         return reverse("public:url_redirect", kwargs={
             "id": self.pk
-        })
+        }) + "?s=" + source
