@@ -41,8 +41,8 @@ a.box:hover {
 }
 
 .org-page-action:not(:empty) {
-    padding-top: 1.25em;
-    padding-bottom: 1.25em;
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
 }
 
 .org-page-action a {
@@ -50,14 +50,21 @@ a.box:hover {
     color: #2160c4;
     cursor: pointer;
     justify-content: center;
-    padding-bottom: calc(.5em - 1px);
+    padding-bottom: calc(.6em - 1px);
     padding-left: 1em;
     padding-right: 1em;
-    margin-right: 0.75em;
-    padding-top: calc(.5em - 1px);
+    padding-top: calc(.6em - 1px);
     text-align: center;
     white-space: nowrap;
     border-radius: 5px;
+}
+
+.org-page-action * {
+    margin-right: 0.75em;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    display: inline-block;
+    width: inherit;
 }
 
 .is-org-hero .hero-body {

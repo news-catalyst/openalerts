@@ -4,16 +4,9 @@
     <div class="column is-4">
         <a class="box card" href="{% url "management:edit_alert" org_id=organization.id pk=alert.id %}">
             <p class="heading">{{alert.channel.name}}</p>
-            <p>{{alert.content}}</p>
+            <p>{{alert.content}} {% if alert.url %}<span class="alert-url has-text-grey">&rarr; {{alert.url}}</span>{% endif %}</p>
+            <p class="has-text-grey"><small>{{alert.published}} {% if alert.updated != alert.published %}(updated {{alert.updated|naturaltime}}){% endif %}</small></p>
         </a>
-        <p class="heading is-marginless">Published</p>
-        <p class="has-bottom-margin">{{alert.published}} ({{alert.published|naturaltime}})</p>
-        <p class="heading is-marginless">Last updated</p>
-        <p class="has-bottom-margin">{{alert.updated}} ({{alert.updated|naturaltime}})</p>
-        {% if alert.url %}
-        <p class="heading is-marginless">Links to</p>
-        <p class="has-bottom-margin">{{alert.url}}</p>
-        {% endif %}
     </div>
     <div class="column is-8">
         Analytics info will eventually appear here.
