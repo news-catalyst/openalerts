@@ -33,3 +33,49 @@ class Alert(models.Model):
         return reverse("public:url_redirect", kwargs={
             "id": self.pk
         }) + "?s=" + source
+
+    @property
+    def stats(self):
+        return AlertStats.for_alert(self)
+
+class AlertStats(models.Model):
+    alert = models.OneToOneField(Alert, on_delete=models.CASCADE)
+
+    webpush_sends = models.BigIntegerField(default=0)
+    webpush_clicks = models.BigIntegerField(default=0)
+
+    email_sends = models.BigIntegerField(default=0)
+    email_clicks = models.BigIntegerField(default=0)
+
+    other_clicks = models.BigIntegerField(default=0)
+
+    @staticmethod
+    def for_alert(alert: Alert):
+        filtered = AlertStats.objects.filter(alert=alert)
+        if filtered.exists():
+            return filtered.first()
+        else:
+            return AlertStats.objects.create(alert=alert)
+
+    @staticmethod
+    def for_alert_locking(alert: Alert):
+        filtered = AlertStats.objects.filter(alert=alert)
+        if not filtered.exists():
+            AlertStats.objects.create(alert=alert)
+        return AlertStats.objects.select_for_update().get(alert=alert)
+
+    def total_distribution(self):
+        return self.webpush_sends + self.email_sends
+
+    def total_clicks(self):
+        return self.other_clicks + self.webpush_clicks + self.email_clicks
+
+    def total_ctr(self):
+        return (self.total_clicks() / max([self.total_distribution(), 1])) * 100
+
+    def click_stats(self):
+        return {
+            "keys": ["Email", "Notifications", "Other"],
+            "values": [self.email_clicks, self.webpush_clicks, self.other_clicks],
+            "count": self.total_clicks()
+        }

@@ -1,14 +1,21 @@
 {% load humanize %}
 
-<div class="columns">
-    <div class="column is-4">
+<div class="level">
+    <div class="level-item is-inline-block" style="max-width: 500px;">
         <a class="box card" href="{% url "management:edit_alert" org_id=organization.id pk=alert.id %}">
             <p class="heading">{{alert.channel.name}}</p>
             <p>{{alert.content}} {% if alert.url %}<span class="alert-url has-text-grey">&rarr; {{alert.url}}</span>{% endif %}</p>
             <p class="has-text-grey"><small>{{alert.published}} {% if alert.updated != alert.published %}(updated {{alert.updated|naturaltime}}){% endif %}</small></p>
         </a>
     </div>
-    <div class="column is-8">
-        Analytics info will eventually appear here.
+    {% with stats=alert.stats %}
+    <div class="level-item is-inline-block has-text-centered">
+        <p class="heading">Net CTR</p>
+        <p class="title">{{alert.stats.total_ctr|floatformat:"-1"}}%</p>
     </div>
+    <div class="level-item is-inline-block has-text-centered">
+        <p class="heading">Distribution</p>
+        <p class="title">{{alert.stats.total_distribution|intcomma}}</p>
+    </div>
+    {% endwith %}
 </div>
