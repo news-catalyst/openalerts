@@ -15,6 +15,8 @@ class SessionAuthenticationRequiredMixin(AccessMixin):
             org.id for org in Organization.for_session(request.session)
         ]:
             return HttpResponseForbidden("403 forbidden")
+        if "org_id" in kwargs:
+            request.organization = Organization.objects.get(pk=kwargs["org_id"])
         return super().dispatch(request, *args, **kwargs)
 
 

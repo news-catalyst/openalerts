@@ -1,0 +1,55 @@
+{% extends 'management/organization_base.html' %}
+
+{% load humanize %}
+
+{% block subsection %}
+/ Subscribers
+{% endblock %}
+
+{% block action %}
+<a href="{% url 'management:subscribers_email_export' org_id=organization.id %}">Export Emails</a>
+{% endblock %}
+
+{% block content %}
+<div class="columns">
+    <div class="column is-4">
+        <div class="box">
+            <p class="heading">Email Subscribers</p>
+            <h3 class="title is-size-3 has-text-weight-light">{{email_subscribers.count|intcomma}}</h3>
+        </div>
+    </div>
+    <div class="column is-4">
+        <div class="box">
+            <p class="heading">Notif. Subscribers</p>
+            <h3 class="title is-size-3 has-text-weight-light">{{webpush_subscribers.count|intcomma}}</h3>
+        </div>
+    </div>
+    <div class="column is-4">
+        <div class="box">
+            <p class="heading">Total Subscribers</p>
+            <h3 class="title is-size-3 has-text-weight-light">{{organization.subscriber_count|intcomma}}</h3>
+        </div>
+    </div>
+</div>
+<table class="table is-striped is-fullwidth">
+    <thead>
+        <th>Email</th>
+        <th>Confirmed</th>
+        <th>Created</th>
+        <th>Channels</th>
+    </thead>
+    <tbody>
+        {% for sub in email_subscribers %}
+        <tr>
+            <td><a href="mailto:{{sub.email}}">{{sub.email}}</a></td>
+            <td>{{sub.verified|yesno|capfirst}}</td>
+            <td>{{sub.created|naturalday}}</td>
+            <td>
+                {% for channel in sub.channels.all %}
+                <a href='{% url "management:channel" org_id=organization.id pk=channel.pk %}' class="tag">{{channel.name}}</a>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+</table>
+{% endblock %}

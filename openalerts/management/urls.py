@@ -16,7 +16,9 @@ from .views import (
     SourceListView,
     DeleteSourceView,
     CreateSourceView,
-    OrganizationIntegrationsView
+    OrganizationIntegrationsView,
+    SubscriberTableView,
+    SubscriberEmailExportView
 )
 
 app_name = "management"
@@ -92,6 +94,16 @@ urlpatterns = [
         "organization/<int:org_id>/alert/<int:pk>/delete/",
         DeleteAlertView.as_view(extra_context={"tab_scope": "publish"}),
         name="delete_alert",
+    ),
+    path(
+        "organization/<int:org_id>/subscribers/",
+        SubscriberTableView.as_view(extra_context={"tab_scope": "subscribers"}),
+        name="subscribers"
+    ),
+    path(
+        "organization/<int:org_id>/subscribers/export/",
+        SubscriberEmailExportView.as_view(extra_context={"tab_scope": "subscribers"}),
+        name="subscribers_email_export"
     ),
     path("login/", LoginView.as_view(), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
