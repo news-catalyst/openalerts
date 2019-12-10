@@ -83,7 +83,7 @@ class AlertStats(models.Model):
         if not hasattr(self, "_relative_ctr") or self._relative_ctr == None: # Caching
             surrounding_alerts = Alert.objects.filter(channel=self.alert.channel, published__lt=self.alert.published).order_by("-published")[:25]
             # this is somewhat inefficient; it could be worth finding a few good ways to optimize this function
-            avg_ctr = sum([alert.stats.total_ctr() for alert in surrounding_alerts])/len(surrounding_alerts)
+            avg_ctr = sum([alert.stats.total_ctr() for alert in surrounding_alerts])/max([1, len(surrounding_alerts)])
             self._relative_ctr = self.total_ctr() - avg_ctr
         return self._relative_ctr
 

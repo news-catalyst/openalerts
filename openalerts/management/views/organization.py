@@ -70,3 +70,8 @@ class OrganizationIntegrationsView(SessionAuthenticationRequiredMixin, SessionOr
     template_name = "management/pages/integrations.html"
     model = Organization
     pk_url_kwarg = "org_id"
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        data["protocol_and_host"] = settings.PROTOCOL_AND_HOST
+        return data
