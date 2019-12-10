@@ -71,7 +71,21 @@ class AlertStats(models.Model):
         return self.other_clicks + self.webpush_clicks + self.email_clicks
 
     def total_ctr(self):
-        return (self.total_clicks() / max([self.total_distribution(), 1])) * 100
+        return 100.0 * self.total_clicks() / max([self.total_distribution(), 1])
+
+    def webpush_ctr(self):
+        return 100.0 * self.webpush_clicks / max([self.webpush_sends, 1])
+
+    def email_ctr(self):
+        return 100.0 * self.email_clicks / max([self.email_sends, 1])
+
+    def relative_ctr(self):
+        if not hasattr(self, "_relative_ctr") or self._relative_ctr == None: # Caching
+            surrounding_alerts = Alert.objects.filter(channel=self.alert.channel, published__lt=self.alert.published).order_by("-published")[:25]
+            # this is somewhat inefficient; it could be worth finding a few good ways to optimize this function
+            avg_ctr = sum([alert.stats.total_ctr() for alert in surrounding_alerts])/len(surrounding_alerts)
+            self._relative_ctr = self.total_ctr() - avg_ctr
+        return self._relative_ctr
 
     def click_stats(self):
         return {

@@ -95,3 +95,9 @@ a.box:hover {
 .limited-width {
     max-width: 50em;
 }
+
+.alert-statistic {
+    text-align: center;
+    width: 150px;
+    font-weight: 400 !important;
+}
