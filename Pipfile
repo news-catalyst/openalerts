@@ -15,6 +15,7 @@ social-auth-presspass = "*"
 django-bulma = "*"
 tweepy = "*"
 django-webpush = {editable = true,git = "https://github.com/milesmcc/django-webpush.git",ref = "635220d"}
+celery = "*"
 
 [requires]
 python_version = "3.6"

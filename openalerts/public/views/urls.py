@@ -6,6 +6,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from alerts.models import Alert, AlertStats
 from ..mixins import OrganizationMixin
+from ..tasks import increment_clicks
 
 
 class UrlRedirectView(RedirectView):
@@ -13,16 +14,7 @@ class UrlRedirectView(RedirectView):
         alert = get_object_or_404(Alert, id=kwargs["id"])
         url = alert.url
 
-        with transaction.atomic():  # XXX: do in task queue to reduce user's exposure to db latency
-            stats = AlertStats.for_alert_locking(alert)
-            source = self.request.GET.get("s", "unknown")
-            if source == "em":
-                stats.email_clicks += 1
-            elif source == "wp":
-                stats.webpush_clicks += 1
-            else:
-                stats.other_clicks += 1
-            stats.save()
+        increment_clicks.delay(alert.pk, self.request.GET.get("S", "unknown"))
 
         if len(url.strip()) > 0:
             return url

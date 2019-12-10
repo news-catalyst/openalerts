@@ -3,12 +3,11 @@ from alerts.models import Alert
 from management.models import Organization
 from .models import EmailSubscriptionGroup, WebpushSubscription, WebpushSubscriptionGroup
 from webpush.models import PushInformation
+from .tasks import publish_alert
 
 def on_alert_save(sender, instance, created, **kwargs):
     if created:
-        # Send emails. TODO: do this in a backgrounded celery task
-        EmailSubscriptionGroup.for_channel(instance.channel).push(instance)
-        WebpushSubscriptionGroup.for_channel(instance.channel).push(instance)
+        publish_alert.delay(instance.pk)
 
 post_save.connect(on_alert_save, sender=Alert)
 
