@@ -59,8 +59,11 @@ a.box:hover {
     border-radius: 5px;
 }
 
-.org-page-action * {
+.org-page-action > * {
     margin-right: 0.75em;
+}
+
+.org-page-action * {
     margin-top: 0px;
     margin-bottom: 0px;
     display: inline-block;
