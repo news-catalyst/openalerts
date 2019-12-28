@@ -1,5 +1,9 @@
 # OpenAlerts
 
+OpenAlerts is an open-source breaking news notification built with newsrooms in mind. It's meant to be inexpensive, intuitive, and low-maintenance.
+
+For more information, please contact News Catalyst.
+
 #### TODO
 
 - [x] Add a way to edit alerts
