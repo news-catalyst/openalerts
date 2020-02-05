@@ -1,7 +1,7 @@
-from django.db import models
+from django.db import models, transaction
 from django.conf import settings
 from management.models import Organization
-from alerts.models import Channel
+from alerts.models import Channel, AlertStats
 from django.core.signing import TimestampSigner
 from django.shortcuts import get_object_or_404, reverse
 from django.template.loader import render_to_string
@@ -112,6 +112,7 @@ class EmailSubscriptionGroup(SubscriptionGroup):
                     "subscriptions/email/alert.txt",
                     context={
                         "alert": alert,
+                        "alert_url": alert.get_public_url("em"),
                         "organization": subscription.organization,
                         "subscription": subscription,
                         "link_prefix": settings.PROTOCOL_AND_HOST,
@@ -124,13 +125,21 @@ class EmailSubscriptionGroup(SubscriptionGroup):
         ]
         send_mass_mail(emails)
 
+        with transaction.atomic():
+            stats = AlertStats.for_alert_locking(alert)
+            stats.email_sends += len(self.subscriptions)
+            stats.save()
+
+
 # WEBPUSH SUBSCRIPTIONS
 # ---------------------
+
 
 class WebpushSubscription(models.Model):
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
     subscription = models.ForeignKey(PushInformation, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
+
 
 class WebpushSubscriptionGroup(SubscriptionGroup):
     def __init__(self, group):
@@ -143,8 +152,20 @@ class WebpushSubscriptionGroup(SubscriptionGroup):
         return WebpushSubscriptionGroup(group)
 
     def push(self, alert):
-        send_notification_to_group(self.group.name, payload=json.dumps({
-            "head": f"{alert.channel.name} / {alert.channel.organization.name}", # TODO: make configurable
-            "body": alert.content,
-            "url": settings.PROTOCOL_AND_HOST + alert.get_public_url()
-        }), ttl=1000)
+        send_notification_to_group(
+            self.group.name,
+            payload=json.dumps(
+                {
+                    "head": f"{alert.channel.name} / {alert.channel.organization.name}",  # TODO: make configurable
+                    "body": alert.content,
+                    "url": settings.PROTOCOL_AND_HOST + alert.get_public_url("wp"),
+                }
+            ),
+            ttl=1000,
+        )
+        with transaction.atomic():
+            stats = AlertStats.for_alert_locking(alert)
+            stats.webpush_sends += WebpushSubscription.objects.filter(
+                organization=alert.channel.organization
+            ).count()
+            stats.save()

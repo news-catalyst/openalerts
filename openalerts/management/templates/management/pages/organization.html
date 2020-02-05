@@ -12,23 +12,31 @@
 {% block content %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.bundle.min.js" integrity="sha256-TQq84xX6vkwR0Qs1qH5ADkP+MvH0W+9E7TdHJsoIQiM=" crossorigin="anonymous"></script>
 <script src="{% static 'management/js/palette.js' %}"></script>
+
+{% if recent_alerts_count > 4 %}
+<div class="notification is-warning">
+    <h4 class="title is-size-4 is-marginless has-text-weight-normal">Too Many Alerts</h4>
+    <p>OpenAlerts strongly recommends that organizations publish no more than four alerts in any given twenty-four hour period to prevent audience burnout and maximize engagement.</p>
+</div>
+{% endif %}
+
 <div class="columns">
-    <div class="column is-4">
+    <div class="column">
         <div class="box">
             <p class="heading">Total Subscribers</p>
             <h3 class="title is-size-3 has-text-weight-light">{{organization.subscriber_count|intcomma}}</h3>
         </div>
     </div>
-    <div class="column is-4">
+    <div class="column">
         <div class="box">
             <p class="heading">Latest Alert</p>
             <h3 class="title is-size-3 has-text-weight-light">{{organization.alerts.0.published|naturaltime}}</h3>
         </div>
     </div>
-    <div class="column is-4">
+    <div class="column">
         <div class="box">
-            <p class="heading">Total Alerts</p>
-            <h3 class="title is-size-3 has-text-weight-light">{{organization.alerts.count|intcomma}}</h3>
+            <p class="heading">Alerts Today</p>
+            <h3 class="title is-size-3 {% if recent_alerts_count > 4 %}has-text-danger{% endif %} has-text-weight-light">{{recent_alerts_count|intcomma}}</h3>
         </div>
     </div>
 </div>

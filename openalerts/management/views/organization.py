@@ -50,6 +50,8 @@ class OrganizationView(
             "count": email_subscribers.count() + webpush_subscribers.count(),
         }
 
+        data["recent_alerts_count"] = self.object.alerts().filter(published__gt=timezone.now() - timedelta(days=1)).count()
+
         subscribers = list(email_subscribers) + list(webpush_subscribers)
         times = reversed([timezone.now() - timedelta(n) for n in range(90)]) # last 90 days
 
@@ -70,3 +72,8 @@ class OrganizationIntegrationsView(SessionAuthenticationRequiredMixin, SessionOr
     template_name = "management/pages/integrations.html"
     model = Organization
     pk_url_kwarg = "org_id"
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        data["protocol_and_host"] = settings.PROTOCOL_AND_HOST
+        return data
